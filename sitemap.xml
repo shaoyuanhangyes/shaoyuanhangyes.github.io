@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://example.com/2020/03/17/Hexo-Next%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AEGitalk/</loc>
+    <loc>http://example.com/2020/03/17/Hexo-Next%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AEgitalk/</loc>
     
     <lastmod>2021-07-17</lastmod>
     
@@ -354,14 +354,14 @@
 
   
   <url>
-    <loc>http://example.com/tags/C/</loc>
+    <loc>http://example.com/tags/Data-Structure/</loc>
     <lastmod>2021-07-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/Data-Structure/</loc>
+    <loc>http://example.com/tags/C/</loc>
     <lastmod>2021-07-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -410,28 +410,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/Markdown/</loc>
-    <lastmod>2021-07-17</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.com/tags/Math/</loc>
-    <lastmod>2021-07-17</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://example.com/tags/Linux/</loc>
-    <lastmod>2021-07-17</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.com/tags/Mongodb/</loc>
     <lastmod>2021-07-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -452,14 +431,28 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/MySQL/</loc>
+    <loc>http://example.com/tags/Markdown/</loc>
     <lastmod>2021-07-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/STL/</loc>
+    <loc>http://example.com/tags/Math/</loc>
+    <lastmod>2021-07-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/Mongodb/</loc>
+    <lastmod>2021-07-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/MySQL/</loc>
     <lastmod>2021-07-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -473,14 +466,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/FTP/</loc>
-    <lastmod>2021-07-17</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.com/tags/Microsoft-Windows/</loc>
+    <loc>http://example.com/tags/STL/</loc>
     <lastmod>2021-07-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -495,6 +481,20 @@
   
   <url>
     <loc>http://example.com/tags/Numpy/</loc>
+    <lastmod>2021-07-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/FTP/</loc>
+    <lastmod>2021-07-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/Microsoft-Windows/</loc>
     <lastmod>2021-07-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -517,14 +517,14 @@
 
   
   <url>
-    <loc>http://example.com/categories/C/</loc>
+    <loc>http://example.com/categories/Data-Structure/</loc>
     <lastmod>2021-07-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/Data-Structure/</loc>
+    <loc>http://example.com/categories/C/</loc>
     <lastmod>2021-07-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -566,6 +566,13 @@
   </url>
   
   <url>
+    <loc>http://example.com/categories/Linux/</loc>
+    <lastmod>2021-07-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://example.com/categories/Markdown/</loc>
     <lastmod>2021-07-17</lastmod>
     <changefreq>daily</changefreq>
@@ -574,13 +581,6 @@
   
   <url>
     <loc>http://example.com/categories/Mongodb/</loc>
-    <lastmod>2021-07-17</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.com/categories/Linux/</loc>
     <lastmod>2021-07-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -601,14 +601,14 @@
   </url>
   
   <url>
-    <loc>http://example.com/categories/FTP/</loc>
+    <loc>http://example.com/categories/Python/</loc>
     <lastmod>2021-07-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/Python/</loc>
+    <loc>http://example.com/categories/FTP/</loc>
     <lastmod>2021-07-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
