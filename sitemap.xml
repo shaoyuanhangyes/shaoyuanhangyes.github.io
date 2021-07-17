@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://example.com/2020/02/07/Linux/</loc>
+    
+    <lastmod>2021-07-17</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://example.com/2020/03/17/Hexo-Next%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AEgitalk/</loc>
     
     <lastmod>2021-07-17</lastmod>
@@ -212,13 +219,6 @@
   </url>
   
   <url>
-    <loc>http://example.com/2020/02/07/Linux/</loc>
-    
-    <lastmod>2020-05-25</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://example.com/2020/04/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</loc>
     
     <lastmod>2020-05-25</lastmod>
@@ -396,6 +396,13 @@
   </url>
   
   <url>
+    <loc>http://example.com/tags/Tools/</loc>
+    <lastmod>2021-07-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://example.com/tags/LeetCode/</loc>
     <lastmod>2021-07-17</lastmod>
     <changefreq>daily</changefreq>
@@ -403,7 +410,14 @@
   </url>
   
   <url>
-    <loc>http://example.com/tags/Tools/</loc>
+    <loc>http://example.com/tags/Markdown/</loc>
+    <lastmod>2021-07-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/tags/Math/</loc>
     <lastmod>2021-07-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -425,20 +439,6 @@
   
   <url>
     <loc>http://example.com/tags/Server/</loc>
-    <lastmod>2021-07-17</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.com/tags/Markdown/</loc>
-    <lastmod>2021-07-17</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.com/tags/Math/</loc>
     <lastmod>2021-07-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -566,14 +566,14 @@
   </url>
   
   <url>
-    <loc>http://example.com/categories/Linux/</loc>
+    <loc>http://example.com/categories/Markdown/</loc>
     <lastmod>2021-07-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/Markdown/</loc>
+    <loc>http://example.com/categories/Linux/</loc>
     <lastmod>2021-07-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
