@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.jpg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="C++ 构造函数&amp;运算符重载构造函数:创建对象时调用的类成员函数 构造函数可以重载默认构造函数:无参数构造函数 名称和类名相同有参构造函数:名称和类名相同 参数列表的参数表示的不是类成员 而是要赋给类成员的值拷贝(复制)构造函数:一种特殊的构造函数 函数名称和类名称相同 拷贝构造函数的参数列表里必须有一个参数是本类型的一个引用变量析构函数:删除对象时调用的类成员函数 没有参数 在程序关闭前">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ 构造函数&amp;运算符重载">
+<meta property="og:url" content="http://example.com/2020/04/18/C++%20%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0&%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/index.html">
+<meta property="og:site_name" content="shaoyuanhangyes">
+<meta property="og:description" content="C++ 构造函数&amp;运算符重载构造函数:创建对象时调用的类成员函数 构造函数可以重载默认构造函数:无参数构造函数 名称和类名相同有参构造函数:名称和类名相同 参数列表的参数表示的不是类成员 而是要赋给类成员的值拷贝(复制)构造函数:一种特殊的构造函数 函数名称和类名称相同 拷贝构造函数的参数列表里必须有一个参数是本类型的一个引用变量析构函数:删除对象时调用的类成员函数 没有参数 在程序关闭前">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-18T03:32:36.000Z">
+<meta property="article:modified_time" content="2020-10-26T14:04:45.417Z">
+<meta property="article:author" content="syh">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2020/04/18/C++%20%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0&%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>C++ 构造函数&运算符重载 | shaoyuanhangyes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">shaoyuanhangyes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">shaoyuanhangyes@outlook.com</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">27</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">51</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/shaoyuanhangyes" class="github-corner" title="Ruojhen_syh" aria-label="Ruojhen_syh" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/04/18/C++%20%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0&%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="syh">
+      <meta itemprop="description" content="Algorithm & Open source by Ruojhen">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shaoyuanhangyes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C++ 构造函数&运算符重载
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-18 11:32:36" itemprop="dateCreated datePublished" datetime="2020-04-18T11:32:36+08:00">2020-04-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-10-26 22:04:45" itemprop="dateModified" datetime="2020-10-26T22:04:45+08:00">2020-10-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="C-构造函数-amp-运算符重载"><a href="#C-构造函数-amp-运算符重载" class="headerlink" title="C++ 构造函数&amp;运算符重载"></a>C++ 构造函数&amp;运算符重载</h2><p>构造函数:创建对象时调用的类成员函数 构造函数可以重载<br>默认构造函数:无参数构造函数 名称和类名相同<br>有参构造函数:名称和类名相同 参数列表的参数表示的不是类成员 而是要赋给类成员的值<br>拷贝(复制)构造函数:一种特殊的构造函数 函数名称和类名称相同 拷贝构造函数的参数列表里必须有一个参数是本类型的一个引用变量<br>析构函数:删除对象时调用的类成员函数 没有参数 在程序关闭前调用析构函数释放资源 析构函数无法重载<br>C++重载:C++允许在同一作用域存在多个功能相似的同名函数和运算符<br>运算符重载:重载的运算符是带有特殊名称的函数，函数名是由关键字<code>operator</code>和其后要重载的运算符符号构成的</p>
+<span id="more"></span> 
+<h2 id="拷贝构造函数"><a href="#拷贝构造函数" class="headerlink" title="拷贝构造函数"></a>拷贝构造函数</h2><p>拷贝构造函数，就是以一个对象作为另一个类对象初值的构造函数。在下面三种情况下会调用拷贝构造函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Chess</span>&#123;&#125;;</span><br><span class="line"><span class="comment">//-------------第一种---------------//</span></span><br><span class="line"><span class="comment">//用一个对象对另一个对象进行显式的初始化</span></span><br><span class="line">Chess chess_one;</span><br><span class="line">Chess chess_two = chess_one;</span><br><span class="line"></span><br><span class="line"><span class="comment">//-------------第二种---------------//</span></span><br><span class="line"><span class="comment">//将一个对象作为函数参数 以值传递的方式传给函数</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">getName</span><span class="params">(Chess a)</span></span>&#123;&#125;</span><br><span class="line"><span class="built_in">getName</span>(chess_one);</span><br><span class="line"></span><br><span class="line"><span class="comment">//-------------第三种---------------//</span></span><br><span class="line"><span class="comment">//把一个对象作为函数的返回值 以值传递的方式从函数返回</span></span><br><span class="line"><span class="function">Chess <span class="title">setName</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Chess chess_one;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    <span class="keyword">return</span> chess_one;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="程序实例1"><a href="#程序实例1" class="headerlink" title="程序实例1:"></a>程序实例1:</h2><p>程序文件constructor存放在文件目录中</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyStr</span>&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    string name;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">MyStr</span>();<span class="comment">//无参构造函数</span></span><br><span class="line">    <span class="built_in">MyStr</span>(string n);<span class="comment">//有参数构造函数</span></span><br><span class="line">    <span class="built_in">MyStr</span>(<span class="type">const</span> MyStr &amp;s);<span class="comment">//复制构造函数 因为数据成员中无指针 所以浅拷贝可行 后面会讨论浅拷贝深拷贝</span></span><br><span class="line">    ~<span class="built_in">MyStr</span>();<span class="comment">//析构函数</span></span><br><span class="line">    MyStr &amp;<span class="keyword">operator</span>=(<span class="type">const</span> MyStr &amp;s)&#123;<span class="comment">//把运算符=重载 因为我们下面要用到对象=对象来进行赋值 记住这个&amp;</span></span><br><span class="line">    <span class="comment">//加上const 对于const和非const的实参函数都能接受 如果不加const 函数就只能接受非const的实参</span></span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;重载赋值运算符= &quot;</span>&lt;&lt;endl;</span><br><span class="line">        <span class="keyword">this</span>-&gt;name=s.name;</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;<span class="comment">//返回值是被赋值者的引用 即*this 这样在函数返回时候避免一次拷贝提高效率</span></span><br><span class="line">        <span class="comment">//这样可以实现连续赋值(a=b=c)</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">friend</span> ostream &amp;<span class="keyword">operator</span>&lt;&lt;(ostream &amp;os,<span class="type">const</span> MyStr &amp;s)&#123;</span><br><span class="line">        os&lt;&lt;s.name&lt;&lt;endl;<span class="comment">//因为name是私有成员 所以函数要声明友元friend</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">MyStr::<span class="built_in">MyStr</span>()&#123;</span><br><span class="line">    name=<span class="string">&quot;syh&quot;</span>;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;默认无参构造函数&quot;</span>&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line">MyStr::<span class="built_in">MyStr</span>(string n)&#123;</span><br><span class="line">    name=n;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;有参数构造函数&quot;</span>&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line">MyStr::~<span class="built_in">MyStr</span>() &#123;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;调用析构函数&quot;</span>&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line">MyStr::<span class="built_in">MyStr</span>(<span class="type">const</span> MyStr &amp;s) &#123;</span><br><span class="line">    name=s.name;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;拷贝构造函数&quot;</span>&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line">MyStr::<span class="built_in">MyStr</span>(<span class="type">const</span> <span class="type">char</span> *c) &#123;<span class="comment">//有了这个构造函数可以直接MyStr str=&quot;sdas&quot;来进行初始化</span></span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;拷贝构造函数(指针字符串)&quot;</span>&lt;&lt;endl;</span><br><span class="line">    name=c;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    MyStr str1;<span class="comment">//调用无参构造函数</span></span><br><span class="line">    <span class="function">MyStr <span class="title">str2</span><span class="params">(<span class="string">&quot;outlook&quot;</span>)</span></span>;<span class="comment">//调用有参数构造函数</span></span><br><span class="line">    MyStr str3=str2;<span class="comment">//调用拷贝构造函数</span></span><br><span class="line">    MyStr str4;<span class="comment">//调用无参构造函数</span></span><br><span class="line">    str4=str2;<span class="comment">//调用重载运算符=</span></span><br><span class="line">    cout&lt;&lt;str1&lt;&lt;str2&lt;&lt;str3&lt;&lt;str4;<span class="comment">//&lt;&lt;被重载设计成能够输出对象的内容</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;<span class="comment">//调用四次析构函数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">默认无参构造函数</span><br><span class="line">有参数构造函数</span><br><span class="line">拷贝构造函数</span><br><span class="line">默认无参构造函数</span><br><span class="line">重载赋值运算符=</span><br><span class="line">syh</span><br><span class="line">outlook</span><br><span class="line">outlook</span><br><span class="line">outlook</span><br><span class="line">调用析构函数</span><br><span class="line">调用析构函数</span><br><span class="line">调用析构函数</span><br><span class="line">调用析构函数</span><br></pre></td></tr></table></figure>
+<h2 id="程序修改-amp"><a href="#程序修改-amp" class="headerlink" title="程序修改 &amp;"></a>程序修改 &amp;</h2><p>程序实例中第12行代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MyStr &amp;operator=(const MyStr &amp;s);</span><br></pre></td></tr></table></figure>
+<p>如果删掉<code>&amp;</code> 运算符=的重载就会发生一些变化<br>如果不加<code>&amp;</code> 就会在函数调用的时候对实参进行一次拷贝<br>程序运行结果就变为</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">默认无参构造函数</span><br><span class="line">有参数构造函数</span><br><span class="line">拷贝构造函数</span><br><span class="line">默认无参构造函数</span><br><span class="line">重载赋值运算符=</span><br><span class="line">拷贝构造函数 <span class="comment">#新增</span></span><br><span class="line">调用析构函数 <span class="comment">#新增</span></span><br><span class="line">syh</span><br><span class="line">outlook</span><br><span class="line">outlook</span><br><span class="line">outlook</span><br><span class="line">调用析构函数</span><br><span class="line">调用析构函数</span><br><span class="line">调用析构函数</span><br><span class="line">调用析构函数</span><br></pre></td></tr></table></figure>
+<p>执行到str4=str2这个赋值传参的时候 在调用运算符=重载之后 会生成一个临时对象 这个临时对象我们暂称pro pro获得了str2的值然后调用了拷贝构造函数将这个值传给str4 然后pro被析构<br><code>MyStr str4;str4=str2;</code>代码等价于</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">MyStr str4;</span><br><span class="line">pro=str2;//临时对象运算符=重载赋值</span><br><span class="line"><span class="comment">#临时对象pro</span></span><br><span class="line">MyStr str4=pro;//拷贝构造</span><br></pre></td></tr></table></figure>
+<h2 id="浅拷贝与深拷贝"><a href="#浅拷贝与深拷贝" class="headerlink" title="浅拷贝与深拷贝"></a>浅拷贝与深拷贝</h2><h3 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h3><p>浅拷贝是系统提供的默认拷贝构造函数<br>浅拷贝执行<code>MyStr str3=str2;</code>仅仅是将对象str2中各个数据成员的值拷贝给对象str3中的数据成员 而不做其他事情 这样str2与str3的name值是相同的 并且它俩指向内存中的同一区域<br>当我们修改str2的name值时 str3的name也会被修改<br>当执行str2和str3的析构函数时 同一内存区域会被释放两次 程序崩溃 </p>
+<h3 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h3><p>程序实例是深拷贝 当然使用浅拷贝也可以 因为成员变量中没有指针<br>深拷贝是必须显示提供拷贝构造函数 这样执行<code>MyStr str3=str2;</code>为str3的name申请了新的地址空间 再将str2的name值拷贝到str3的name中 这样str2.name与str3.name各自独立</p>
+<h2 id="赋值运算符重载"><a href="#赋值运算符重载" class="headerlink" title="赋值运算符重载"></a>赋值运算符重载</h2><p>C++规定 赋值运算符重载函数 只能是类的非静态的成员函数 不能是静态成员函数也不能是友元函数</p>
+<p>不能是静态成员函数的原因:静态成员函数只能操作类的静态数据成员 不能操作非静态成员<br>不能是友元函数的原因:C++规定当程序没有显式地提供一个以本类或本类的引用为参数的赋值运算符重载函数时 编译器会自动提供一个 但是友元函数并不属于这个类 当我们提供了一个友元的赋值运算符重载时 系统也会自动提供一个 这样程序执行时会产生二义性 C++强制规定 赋值运算符重载函数只能定义为类的成员函数</p>
+<p>赋值运算符重载函数也不能被继承:若子类自己不提供赋值运算符重载函数只是用父类的重载函数 父类的重载函数只能调用父类自己的数据成员 那么子类的数据成员就无法被使用 </p>
+<p>赋值运算符函数要避免自己给自己赋值 如果出现自赋值 立即<code>return *this;</code>:自己给自己赋值毫无意义 还会调用其他函数开销很大</p>
+<p>如果类的数据成员中含有指针p 假设用指针q赋值给p 需要先将p原来指向的空间delete掉(因为指针p的空间通常是之前new来的 如果为p重新分配空间的时候没有将原来的空间delete掉会造成内存泄漏) 如果是自赋值 那么q和p是同一个指针 指向同一个内存空间 在赋值前需要对p原来空间delete 那么q指向的内容也被删除 无法赋值</p>
+<p>定义赋值运算符函数时 需要关注如下几点:<br>1.是否把返回值的类型声明为该类型的引用 并在函数结束前返回对象自身的引用(*this) 只有返回一个引用 才可以允许连续赋值(a=b=c) 否则如果函数的返回值是void 应用该赋值运算符将不能连续赋值 程序不能通过编译<br>2.是否把传入的参数类型声明为const引用 若传入的参数不是引用而是对象 那么从形参到实参会调用一次复制构造函数 把参数声明为引用可以避免这一次无谓的消耗提高代码效率 同时我们在赋值运算符函数内不会改变传入的对象的窗台 因此加上const关键字<br>3.是否释放对象自身已有的内存 若忘记在分配新内存之前释放已有空间 会出现内存泄漏<br>4.是否判断传入的参数和当前对象(*this)是不是同一个对象 如果是同一个 则不进行赋值操作 直接返回 若不判断就进行赋值 那么在释放对象自身的内存的时候会导致:当 *this和传入的参数是同一个对象时 一旦释放了自身的内存 传入参数的内存也同时被释放了 就再也找不到需要赋值的内容了</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">MyStr &amp;<span class="keyword">operator</span>=(<span class="type">const</span> MyStr &amp;s)&#123;<span class="comment">//把运算符=重载 因为我们下面要用到对象=对象来进行赋值 记住这个&amp;</span></span><br><span class="line">    <span class="comment">//加上const 对于const和非const的实参函数都能接受 如果不加const 函数就只能接受非const的实参</span></span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;重载赋值运算符= &quot;</span>&lt;&lt;endl;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>!=&amp;s)&#123;</span><br><span class="line">            <span class="function">MyStr <span class="title">strT</span><span class="params">(s)</span></span>;<span class="comment">//隐式调用构造函数</span></span><br><span class="line"></span><br><span class="line">            <span class="type">char</span> *pTemp=strT.name;</span><br><span class="line">            strT.name=name;</span><br><span class="line">            name=pTemp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;<span class="comment">//返回值是被赋值者的引用 即*this 这样在函数返回时候避免一次拷贝提高效率</span></span><br><span class="line">        <span class="comment">//这样可以实现连续赋值(a=b=c)</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>这个函数中 先创建一个临时对象strT 然后把strT.name和对象自身的name做交换 由于strT是一个局部变量 离开了if作用域 自动调用strT的析构函数 由于strT.name指向的内存就是对象之前name的内存 相当于自己调用析构函数释放对象的内存</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>End of reading! -- Thanks for your supporting</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="syh 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="syh 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/C/" rel="tag"># C++</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/17/Hexo-Next%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AEgitalk/" rel="prev" title="Hexo-Next主题配置gitalk">
+      <i class="fa fa-chevron-left"></i> Hexo-Next主题配置gitalk
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/22/STL/" rel="next" title="STL">
+      STL <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#C-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0-amp-%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD"><span class="nav-number">1.</span> <span class="nav-text">C++ 构造函数&amp;运算符重载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%B7%E8%B4%9D%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">拷贝构造函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E5%AE%9E%E4%BE%8B1"><span class="nav-number">3.</span> <span class="nav-text">程序实例1:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E4%BF%AE%E6%94%B9-amp"><span class="nav-number">4.</span> <span class="nav-text">程序修改 &amp;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%85%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D"><span class="nav-number">5.</span> <span class="nav-text">浅拷贝与深拷贝</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%85%E6%8B%B7%E8%B4%9D"><span class="nav-number">5.1.</span> <span class="nav-text">浅拷贝</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B1%E6%8B%B7%E8%B4%9D"><span class="nav-number">5.2.</span> <span class="nav-text">深拷贝</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B5%8B%E5%80%BC%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD"><span class="nav-number">6.</span> <span class="nav-text">赋值运算符重载</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="syh"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">syh</p>
+  <div class="site-description" itemprop="description">Algorithm & Open source by Ruojhen</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shaoyuanhangyes" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shaoyuanhangyes" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:shaoyuanhangoutlook@gmail.com" title="E-Mail → mailto:shaoyuanhangoutlook@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/1349974130" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;1349974130" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://plus.google.com/110657431429268241192" title="Google → https:&#x2F;&#x2F;plus.google.com&#x2F;110657431429268241192" rel="noopener" target="_blank"><i class="fab fa-google fa-fw"></i>Google</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Ruojhen_syh" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Ruojhen_syh" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/Ruojhen_syh" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;Ruojhen_syh" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fab fa-accessible-icon"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">syh</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'http://example.com/2020/04/18/C++%20%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0&%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/',]
+      });
+      });
+  </script>
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '0432aa8796842fef84e6',
+      clientSecret: '1f57cccd096d17be4bae86b5ffd966372dc71aad',
+      repo        : 'gitalk',
+      owner       : 'shaoyuanhangyes',
+      admin       : ['shaoyuanhangyes'],
+      id          : '99f745d0774ba5ead48e51b366c188c7',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

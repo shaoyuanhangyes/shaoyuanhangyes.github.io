@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.jpg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="计算机网络主要内容集中在网络层之上的协议知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络">
+<meta property="og:url" content="http://example.com/2020/04/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/index.html">
+<meta property="og:site_name" content="shaoyuanhangyes">
+<meta property="og:description" content="计算机网络主要内容集中在网络层之上的协议知识">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2020/04/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/socket%E9%80%89%E9%A1%B9.png">
+<meta property="article:published_time" content="2020-04-29T10:19:36.000Z">
+<meta property="article:modified_time" content="2022-03-06T20:59:15.092Z">
+<meta property="article:author" content="syh">
+<meta property="article:tag" content="计算机网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2020/04/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/socket%E9%80%89%E9%A1%B9.png">
+
+<link rel="canonical" href="http://example.com/2020/04/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>计算机网络 | shaoyuanhangyes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">shaoyuanhangyes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">shaoyuanhangyes@outlook.com</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">27</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">51</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/shaoyuanhangyes" class="github-corner" title="Ruojhen_syh" aria-label="Ruojhen_syh" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/04/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="syh">
+      <meta itemprop="description" content="Algorithm & Open source by Ruojhen">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shaoyuanhangyes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          计算机网络
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-29 18:19:36" itemprop="dateCreated datePublished" datetime="2020-04-29T18:19:36+08:00">2020-04-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-07 04:59:15" itemprop="dateModified" datetime="2022-03-07T04:59:15+08:00">2022-03-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h1><p>主要内容集中在网络层之上的协议知识</p>
+<span id="more"></span> 
+<h2 id="OSI模型"><a href="#OSI模型" class="headerlink" title="OSI模型"></a>OSI模型</h2><table>
+<thead>
+<tr>
+<th align="center">五层模型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">应用层</td>
+</tr>
+<tr>
+<td align="center">传输层</td>
+</tr>
+<tr>
+<td align="center">网络层</td>
+</tr>
+<tr>
+<td align="center">数据链路层</td>
+</tr>
+<tr>
+<td align="center">物理层</td>
+</tr>
+</tbody></table>
+<h2 id="数据链路层你"><a href="#数据链路层你" class="headerlink" title="数据链路层你"></a>数据链路层你</h2><h3 id="MAC地址"><a href="#MAC地址" class="headerlink" title="MAC地址"></a>MAC地址</h3><h3 id="ARP协议"><a href="#ARP协议" class="headerlink" title="ARP协议"></a>ARP协议</h3><p>地址解析协议 将ip地址转换成mac地址</p>
+<h2 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h2><h3 id="IP协议"><a href="#IP协议" class="headerlink" title="IP协议"></a>IP协议</h3><h3 id="ICMP协议"><a href="#ICMP协议" class="headerlink" title="ICMP协议"></a>ICMP协议</h3><p>网际控制报文协议<br>确认ip包是否正确到达目标地址<br>通知在发送过程中ip包被丢弃的原因<br>ICMP基于IP协议工作 ICMP只能搭配IPv4 如果是IPv6则需要用ICMPv6<br>ICMP报文包含在IP数据报中 IP报头在ICMP报文的最前面 一个ICMP报文包括IP报头（至少20字节）、ICMP报头（至少八字节）和ICMP报文（属于ICMP报文的数据部分）</p>
+<h3 id="IGMP协议"><a href="#IGMP协议" class="headerlink" title="IGMP协议"></a>IGMP协议</h3><p>互联网组管理协议<br>IP组播(多播)通信的特点是报文从一个源发出 被转发到一组特定的接收者 但在组播通信模型中 发送者不关注接收者的位置信息 只是将数据发送到约定的目的组播地址<br>要使组播报文最终能够到达接收者 需要某种机制使连接接收者网段的组播路由器能够了解到该网段存在哪些组播接收者 同时保证接收者可以加入相应的组播组中<br>IGMP就是用来在接收者主机和与其所在网段直接相邻的组播路由器之间建立、维护组播组成员关系的协议</p>
+<h3 id="路由选择协议"><a href="#路由选择协议" class="headerlink" title="路由选择协议"></a>路由选择协议</h3><h4 id="RIP协议"><a href="#RIP协议" class="headerlink" title="RIP协议"></a>RIP协议</h4><p>路由信息协议</p>
+<h4 id="OSPF协议"><a href="#OSPF协议" class="headerlink" title="OSPF协议"></a>OSPF协议</h4><p>开放式最短路径优先</p>
+<h4 id="NAT"><a href="#NAT" class="headerlink" title="NAT"></a>NAT</h4><h2 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h2><h3 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h3><p>用户数据报协议<br>UDP在传送数据之前不需要先建立连接 接收数据的主机在收到UDP报文后不需要给出确认 因此UDP提供不可靠交付 但在某些情况下使用UDP很有效<br>并且UDP支持一对一 一对多 多对一 多对多的交互通信</p>
+<h4 id="使用UDP的协议"><a href="#使用UDP的协议" class="headerlink" title="使用UDP的协议"></a>使用UDP的协议</h4><table>
+<thead>
+<tr>
+<th align="center">应用</th>
+<th align="center">名字</th>
+<th align="center">端口号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">域名解析</td>
+<td align="center">DNS</td>
+<td align="center">53</td>
+</tr>
+<tr>
+<td align="center">简单文件传送</td>
+<td align="center">TFTP</td>
+<td align="center">69</td>
+</tr>
+<tr>
+<td align="center">路由选择协议</td>
+<td align="center">RIP</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">IP地址管理</td>
+<td align="center">DHCP</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">简单网络管理</td>
+<td align="center">SNMP</td>
+<td align="center">161</td>
+</tr>
+<tr>
+<td align="center">远程文件服务器</td>
+<td align="center">NFS</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">IP电话/多媒体通信</td>
+<td align="center">专用协议</td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h4 id="UDP数据报格式"><a href="#UDP数据报格式" class="headerlink" title="UDP数据报格式"></a>UDP数据报格式</h4><p>UDP数据报分为UDP首部和UDP数据部<br>UDP首部包括源端口 目的端口 长度 校验和(检测传输中是否出错 出错直接丢弃) 共8字节 每个部分2字节<br>运输层从网络层收到UDP数据报时 根据首部中的目的端口将UDP数据报发送到相应端口 最终上交到应用进程 若接收方发现UDP数据报中目的端口不正确(不存在对应端口号的进程) 就丢弃该报文 并通过ICMP发送端口不可达的差错报文给发送方<br>虽然UDP在通信的时候需要用到端口号 但UDP通信是无连接的 因此不需要使用套接字(TCP之间的通信必须要在两个套接字之间建立连接)</p>
+<h3 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h3><p>TCP传输控制协议<br>TCP提供面向连接服务 即在传送数据之前必须要先建立连接 数据传送结束后需要释放连接<br>TCP不提供广播多播服务 因为TCP提供可靠面向连接的服务 因此增加了许多无法避免的开销 如 确认 流量控制 计时器 连接管理等 使协议数据单元的首部增大了许多<br>TCP连接是一对一的 并且TCP提供全双工通信 即通信双方的应用进程在任何时候都能发送数据</p>
+<h4 id="使用TCP的协议"><a href="#使用TCP的协议" class="headerlink" title="使用TCP的协议"></a>使用TCP的协议</h4><table>
+<thead>
+<tr>
+<th align="center">应用</th>
+<th align="center">名字</th>
+<th align="center">端口号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">组播</td>
+<td align="center">IGMP</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">Email</td>
+<td align="center">SMTP</td>
+<td align="center">25</td>
+</tr>
+<tr>
+<td align="center">远程终端</td>
+<td align="center">TELNET</td>
+<td align="center">23</td>
+</tr>
+<tr>
+<td align="center">超文本传输协议</td>
+<td align="center">HTTP</td>
+<td align="center">80</td>
+</tr>
+<tr>
+<td align="center">文件传送</td>
+<td align="center">FTP</td>
+<td align="center">21</td>
+</tr>
+</tbody></table>
+<h4 id="TCP的连接"><a href="#TCP的连接" class="headerlink" title="TCP的连接"></a>TCP的连接</h4><p>TCP连接的端点是套接字(Socket) 即端口号拼接IP地址就构成了套接字 例如(127.0.0.1:80)就是一个套接字<br>同一个IP地址可以有多个不同的TCP连接 同一个端口号也可以出现在多个不同的TCP连接中<br>套接字Socket与网络编程的socketAPI不是一个东西</p>
+<h4 id="TCP可靠传输的工作原理"><a href="#TCP可靠传输的工作原理" class="headerlink" title="TCP可靠传输的工作原理"></a>TCP可靠传输的工作原理</h4><h5 id="停止等待协议"><a href="#停止等待协议" class="headerlink" title="停止等待协议"></a>停止等待协议</h5><p>使用了停止等待协议:每发送完一个分组就停止发送 等待对方的确认到达后再发送下一个分组<br>超时重传:发送方发送完数据后超过一段时间仍没有收到确认 就认为刚才发送的分组丢失了 因而重新传送前面发送过的分组 关键在于发送完设置一个超时计时器 超过了预定时间没有收到回来的确认就再次发送 发送方发送分组后必须暂时保留已发送分组的副本 直到收到相应的确认才能清除副本 其次 分组和确认分组必须设置编号 最后 超时计时器设置的重传时间必须比数据在分组传输的平均往返时间更长 但如果这个重传时间设置非常长 通信的效率就会很低 重传时间设置太短就会产生不必要的重传<br>确认丢失:接收方收到了发送方的分组 但返回给发送方的确认在传输过程中丢失了 发送方超时重传了一份重复的分组 接收方又收到了重传的分组 需要丢弃这个重复的分组 并向发送方再次发送确认<br>确认迟到:接收方收到了发送方的分组 但返回给发送方的确认在传输过程中某种原因迟到了 因此发送方又发送了一份重复的分组 接收方又收到了重传的分组 需要丢弃这个重复的分组 并向发送方再次发送确认 发送方收到了重复的确认 也丢弃这个重复的确认<br>通过以上的确认和重传机制我们可以在不可靠的传输网络上实现可靠的通信</p>
+<p>上述机制被整合为 <code>自动重传请求ARQ</code>意思是重传的请求自动进行 接收方不需要请求发送方重传某个出错的分组<br>但停止等待协议的信道利用率非常低 所以我们采用流水线传输:发送方连续发送多个分组 使信道上一直有数据不间断的传送 流水线传输需要使用 <code>连续ARQ协议</code> <code>滑动窗口协议</code></p>
+<h5 id="连续ARQ协议"><a href="#连续ARQ协议" class="headerlink" title="连续ARQ协议"></a>连续ARQ协议</h5><p>连续ARQ协议规定 发送方每收到一个确认 就把发送窗口向前滑动一个分组的位置 接收方一般采用累积确认的方式 意思是接收方不需要对每个收到的分组逐个发送确认 而是收到几个分组后对按序到达的最后一个分组发送确认 表示所有分组都已经正确收到了<br>累计确认优点是容易实现 就算确认丢失也不需要重传 缺点是不能向发送方反映出接收方已经正确收到分组的信息 例如发送方发送前5个分组 中间第3个分组丢失了 接收方只能对前两个分组发送确认 发送方只能将后三个分组都重传一次 因此通信质量不好的时候连续ARQ会带来负面影响</p>
+<h5 id="TCP报文首部格式"><a href="#TCP报文首部格式" class="headerlink" title="TCP报文首部格式"></a>TCP报文首部格式</h5><p>一个TCP报文段分为首部和数据两部分 TCP报文段首部前20个字节是固定的 还有4n(n是整数)个字节根据需要而增加 因此TCP首部最小长度20字节<br>首部字段包含:<br>1.源端口和目的端口 各占2字节<br>2.序号 占4字节 指本报文段所发送的数据的第一个字节的序号 也称为报文段序号<br>3.确认号 占4字节=32位 可对4GB的数据进行编号 可保证序号重复使用 旧序号的数据早已送到终点了  是期望收到对方下一个报文段的第一个数据字节的序号<br>4.数据偏移 占4位 指出TCP报文段的数据起始处距离TCP报文段的起始处有多远 数据偏移的最大值是60字节<br>5.保留 6字节</p>
+<p>6.控制位 6字节 用来说明本报文段的性质<br>    6.1 紧急URG URG=1时说明紧急指针字段有效 通知系统此报文存在紧急数据 应优先传送 发送方TCP就把紧急数据插入到本报文段数据的最前面 例如ctrl+C<br>    6.2 确认ACK ACK=1时确认号字段才有效 ACK=0时确认号无效 TCP规定 在连接建立后所有传送的报文段都必须把ACK置1<br>    6.3 推送PSH 当两个进程进行交互通信时 有时在一端的进程希望在键入一个命令后立即就能收到对方的相应 TCP就可以使用推送 发送方TCP把PSH置1 并立即创建一个报文段发送出去 接收方TCP收到PSH=1的报文段 就立即交付接收进程 而不用等缓存都满了再向上交付<br>    6.4复位RST RST=1时 表面TCP连接中出现严重错误 必须释放连接 然后再重新建立运输连接<br>    RST=1还可以用来拒绝一个非法的报文段或拒绝打开一个连接<br>    6.5同步SYN 在连接建立时用来同步序号 当SYN=1且ACK=0 表明这是一个连接请求报文 对方若同意建立连接 就在响应的报文段中让SYN=1且ACK=1 因此 SYN=1就表明这是一个请求连接或请求接受的报文<br>    6.6终止FIN 用来释放连接 FIN=1时 表明此报文段的发送方的数据全部发送完毕 请求释放连接<br>7.窗口 2字节 窗口值是接收方告诉发送方设置发送窗口的大小 窗口值经常动态变化着<br>8.校验和 2字节<br>9.紧急指针 2字节 紧急指针仅在URG=1的时候才有意义 指出本报文段紧急数据的字节数 窗口为0时也可以发送紧急数据<br>10.选项 长度可变 最长40字节 长度为0时TCP首部长度为20字节</p>
+<p>随着互联网的发展还增加了许多功能</p>
+<h5 id="TCP的运输连接管理"><a href="#TCP的运输连接管理" class="headerlink" title="TCP的运输连接管理"></a>TCP的运输连接管理</h5><p>运输连接一共三个阶段:连接建立 数据传送 连接释放</p>
+<h6 id="TCP连接建立"><a href="#TCP连接建立" class="headerlink" title="TCP连接建立"></a>TCP连接建立</h6><p>TCP建立连接的过程叫握手<br>A为TCP客户端  B为TCP服务端</p>
+<p>A向B发出连接请求报文段 这时TCP首部中的SYN=1 同时选择一个初始序号seq=x A进入同步已发送状态<br>(TCP规定SYN报文段不能携带数据 但要消耗掉一个序号)</p>
+<p>B收到连接请求的报文后 若同意建立连接 就向A发送确认报文 在确认报文段中 SYN=1 ACK=1 确认号ack=x+1 同时也为自己选择一个初始序号seq=y 这个报文段也不能携带数据 同样也要消耗掉一个序号  B进入同步收到状态</p>
+<p>A收到B给出的确认报文后 还要再向B发送确认 确认报文ACK=1 确认号ack=y+1 而自己的序号seq=x+1 (ACK报文段可携带数据 若不携带数据就不消耗序号 这种情况下 下一个数据报的序号仍是seq=x+1) 至此 TCP连接已建立 A进入已建立连接状态<br>B收到A确认后也进入已建立状态 </p>
+<p><code>A最后还要发送一次确认的原因:</code> 防止已失效的连接请求报文段因为网络堵塞的原因突然又传送到B从而发生错误   若B收到已失效的连接请求报文后 会向A发送确认报文 A收到后不会向B发送确认 B由于收不到确认就知道A没有要求建立连接</p>
+<h6 id="TCP连接释放"><a href="#TCP连接释放" class="headerlink" title="TCP连接释放"></a>TCP连接释放</h6><p>数据传输结束后 AB都处于已建立连接状态 A把连接释放报文段首部的FIN=1 序号seq=u(u=前面已传送过的数据的最后一个字节序号+1) A进入FIN-Wait-1状态等待B的确认(FIN报文段即使不携带数据 也消耗掉一个序号)</p>
+<p>B收到连接释放报文段后发出确认 确认号ack=u+1 而这个报文段自己的确认号是v(等于B前面传送过的数据的最后一个字节的序号+1) 然后B就进入关闭等待阶段 此时TCP处于半关闭阶段:A没有数据发送给B B仍能给A发送数据A仍能接收 A收到来自B的确认后 进入FIN-Wait-2状态 等待B发出的连接释放报文段</p>
+<p>若B已经没有向A发送的数据 B向A发出连接释放报文段中FIN=1 假定B的序号是w (半关闭的状态下B可能又向A发送过一些数据) B还必须重复上次已发送过的确认号ack=u+1 此时B进入最后确认状态 等待A的确认</p>
+<p>A收到B的连接释放报文段后 对B发出确认 确认报文段中ACK=1 确认序列号ack=w+1 自己的序号是seq=u+1 然后进入Time-wait状态 经过时间等待计时器设置的时间后(2个最长报文段寿命) A才进入关闭状态 B收到A发来的确认后直接进入关闭状态 因此B结束TCP连接的时间比A要早</p>
+<p><code>A需要等待2个最长报文段寿命的原因:</code> 1.为了保证A发送的最后一个ACK确认报文能够到达B 如果这个报文段丢失 B无法收到A的确认报文 B就会重传给A FIN=1和ack的连接释放报文 A在这段时间内就能收到这个重传的FIN+ACK报文 接着A就会重传一个确认 报文准确送达后 A等待一段时间后和B都能进入关闭状态    2.防止已失效的连接请求报文段出现在此连接中</p>
+<p><code>A与B建立连接后 A出现故障:</code> TCP设置了一个keepalive timer(保活计时器) A故障后B无法收到A发来的数据 因此应有措施使服务器不白白等待下去 服务器B每一次收到A的数据时都会重新设置保活计时器 超过时间间隔都没收到A发来的数据时 B发送一个探测报文段 每隔75s发送一次 发送10个探测报文后仍无客户响应 B就认为A出了故障 就关闭连接</p>
+<h2 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h2><h3 id="DNS域名系统"><a href="#DNS域名系统" class="headerlink" title="DNS域名系统"></a>DNS域名系统</h3><p>通过域名服务器程序将域名解析成ip地址 过程如下:某一个应用进程需要把主机名解析成ip地址时 该应用进程调用解析程序 成为DNS的一个客户 将待解析的域名放在DNS请求报文中 以UDP形式发送给本地域名服务器 使用UDP是为了减少开销 本地域名服务器在查找域名后把对应的ip地址在回答报文中返回 应用进程获得目的主机ip地址后开始通信</p>
+<h3 id="万维网www"><a href="#万维网www" class="headerlink" title="万维网www"></a>万维网www</h3><h4 id="统一资源定位符URL"><a href="#统一资源定位符URL" class="headerlink" title="统一资源定位符URL"></a>统一资源定位符URL</h4><p>&lt;协议&gt;://&lt;主机&gt;:&lt;端口&gt;/&lt;路径&gt;</p>
+<h4 id="超文本传输协议HTTP"><a href="#超文本传输协议HTTP" class="headerlink" title="超文本传输协议HTTP"></a>超文本传输协议HTTP</h4><p>HTTP默认端口号80 HTTP是一个面向事务的应用层协议 是能在万维网上可靠的交换文件的重要基础<br>HTTP虽然使用了面向连接的TCP作为运输层协议 但HTTP本身是无连接的 即通信的双方交换HTTP报文之前不需要先建立HTTP连接<br>HTTP协议是无状态的 即同一个客户第二次访问同一个服务器上的页面时 服务器的响应与第一次被访问时的相同 因为服务器并不记得曾经访问过的这个客户 也不记得为这个客户曾经服务过多少次 HTTP的无状态特性简化了服务器的设计 使服务器更容易支持大量并发的HTTP请求</p>
+<h4 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h4><p>为了保留HTTP无状态的特点 又要让服务器记住之前的客户 引入了cookie技术/http1.1的持久连接 即中间不停的发送确认应答<br>在没有cookie信息的状态下的请求时 服务器在响应中添加cookie后返回客户 客户端保存cookie<br>在下一次有cookie信息的请求中 自动在请求中添加cookie发送 服务器端检查cookie的sid后相应</p>
+<p>如果客户端禁用了cookie sid字段客户端用的方法是URL重写 即在URL里加上sid字段 这样sid就不用回传给客户端 只在每次页面跳转的时候把sid写进URL</p>
+<h4 id="cookie与session区别"><a href="#cookie与session区别" class="headerlink" title="cookie与session区别"></a>cookie与session区别</h4><ol>
+<li>cookie把用户数据存到本地 session把用户数据存在服务器</li>
+<li>单个cookie大小不超过4kb 单个session大小与服务器内存有关</li>
+<li>cookie不安全 可以分析cookie进行cookie欺骗 session能更安全</li>
+<li>cookie在没禁用的情况下会成为sid值的容器 可以把重要信息放在session中 其他信息放在cookie中<h4 id="HTTP报文结构"><a href="#HTTP报文结构" class="headerlink" title="HTTP报文结构"></a>HTTP报文结构</h4>HTTP有两种报文<br>请求报文:客户向服务器发送请求报文<br>响应报文:服务器应答客户的报文<br>请求报文和响应报文都是由三个部分组成 区别是开始行不同<h5 id="开始行"><a href="#开始行" class="headerlink" title="开始行"></a>开始行</h5>用于区分请求报文和响应报文 请求报文中的开始行叫请求行 响应报文中的开始行叫状态行<br>HTTP请求报文由请求行 请求头部 空行 请求数据 四个部分组成<br>HTTP响应报文由状态行 消息报头 空行 相应正文 四个部分组成<br>请求行包含了请求方法+空格+URL+空格+HTTP版本+CRLF(回车换行)<br>状态行包含了HTTP版本+空格+状态码+短语+CRLF<h5 id="GET请求报文"><a href="#GET请求报文" class="headerlink" title="GET请求报文"></a>GET请求报文</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">GET /<span class="number">562f</span>25980001b1b106000338.jpg HTTP/<span class="number">1.1</span>   #请求行</span><br><span class="line">Host:img.mukewang.com                        #空行前都是请求头部</span><br><span class="line">User-Agent:Mozilla/<span class="number">5.0</span> (Windows NT <span class="number">10.0</span>; WOW64) #HTTP客户端程序的信息，该信息由你发出请求使用的浏览器来定义,并且在每个请求中自动发送等</span><br><span class="line">AppleWebKit/<span class="number">537.36</span> (KHTML, like Gecko) Chrome/<span class="number">51.0</span><span class="number">.2704</span><span class="number">.106</span> Safari/<span class="number">537.36</span></span><br><span class="line">Accept:image/webp,image<span class="comment">/*,*/</span>*;q=<span class="number">0.8</span> #说明用户代理可处理的媒体类型。</span><br><span class="line">Referer:http:<span class="comment">//www.imooc.com/</span></span><br><span class="line">Accept-Encoding:gzip, deflate, sdch          #说明用户代理可处理的媒体类型。</span><br><span class="line">Accept-Language:zh-CN,zh;q=<span class="number">0.8</span>               #说明用户代理能够处理的自然语言集。</span><br><span class="line">空行</span><br><span class="line">请求数据为空  #请求数据也叫主体</span><br></pre></td></tr></table></figure>
+<h5 id="POST请求报文"><a href="#POST请求报文" class="headerlink" title="POST请求报文"></a>POST请求报文</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">POST / HTTP1<span class="number">.1</span> #请求行</span><br><span class="line">Host:www.wrox.com  #空行前是请求头部</span><br><span class="line">User-Agent:Mozilla/<span class="number">4.0</span> (compatible; MSIE <span class="number">6.0</span>; Windows NT <span class="number">5.1</span>; SV1; .NET CLR <span class="number">2.0</span><span class="number">.50727</span>; .NET CLR <span class="number">3.0</span><span class="number">.04506</span><span class="number">.648</span>; .NET CLR <span class="number">3.5</span><span class="number">.21022</span>)</span><br><span class="line">Content-Type:application/x-www-form-urlencoded</span><br><span class="line">Content-Length:<span class="number">40</span></span><br><span class="line">Connection: Keep-Alive</span><br><span class="line">空行</span><br><span class="line">name=Professional%<span class="number">20</span>Ajax&amp;publisher=Wiley #请求数据</span><br></pre></td></tr></table></figure>
+<h5 id="HTTP响应报文"><a href="#HTTP响应报文" class="headerlink" title="HTTP响应报文"></a>HTTP响应报文</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">HTTP/<span class="number">1.1</span> <span class="number">200</span> OK    #状态行 由HTTP版本号 状态码 状态消息 组成</span><br><span class="line">Date: Fri, <span class="number">22</span> May <span class="number">2009</span> <span class="number">06</span>:<span class="number">07</span>:<span class="number">21</span> GMT  #二三行为消息报头 说明客户端要使用的信息</span><br><span class="line">Content-Type: text/html; charset=UTF<span class="number">-8</span></span><br><span class="line">空行</span><br><span class="line">&lt;html&gt; #响应正文</span><br><span class="line">&lt;head&gt;&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;!--body goes here--&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<h6 id="请求方法"><a href="#请求方法" class="headerlink" title="请求方法"></a>请求方法</h6></li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="center">方法</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">GET</td>
+<td align="center">请求读取由URL标志的信息</td>
+</tr>
+<tr>
+<td align="center">POST</td>
+<td align="center">给服务器添加信息</td>
+</tr>
+<tr>
+<td align="center">OPTION</td>
+<td align="center">询问支持的方法有哪些</td>
+</tr>
+<tr>
+<td align="center">HEAD</td>
+<td align="center">请求读取由URL所标志的信息的首部</td>
+</tr>
+<tr>
+<td align="center">PUT</td>
+<td align="center">在指明的URL下存储一个文档(传输文件)</td>
+</tr>
+<tr>
+<td align="center">DELETE</td>
+<td align="center">删除指明的URL所标志的资源(删文件)</td>
+</tr>
+<tr>
+<td align="center">TRACE</td>
+<td align="center">用来进行环回测试的请求报文</td>
+</tr>
+<tr>
+<td align="center">CONNECT</td>
+<td align="center">用于代理服务器</td>
+</tr>
+</tbody></table>
+<h6 id="GET-POST区别"><a href="#GET-POST区别" class="headerlink" title="GET/POST区别"></a>GET/POST区别</h6><p>get是从服务器上获取数据 post是向服务器传送数据<br>get后退按钮/刷新无害 post数据会被重新提交(浏览器会弹窗告知用户数据会被重新提交)<br>get书签可收藏 post为书签不可收藏<br>get能被缓存 post不能 除非人工修改设置<br>get编码类型为URL post支持多重编码方式<br>get对数据长度有限制 URL最大长度2048个字符 post无限制<br>get安全性较差 发送信息都显示在URL上 post的数据不会显示在URL中<br>get传递的参数都是ASCII字符 post没有限制<br>get产生一个tcp数据报 post产生两个tcp数据报<br>get请求时 浏览器会把http的header和data一起发送出去 服务器响应200(返回数据)<br>post请求时 浏览器先发送header 服务器响应100(continue) 浏览器在发送data 服务器响应200 但Firefox的post就只发送一次</p>
+<h6 id="状态码种类"><a href="#状态码种类" class="headerlink" title="状态码种类"></a>状态码种类</h6><p>1xx:表示通知信息 比如请求收到或正在处理<br>2xx:表示成功 202接受<br>3xx:表示重定向<br>4xx:表示客户的差错 400错误请求 403拒绝执行 404不可用<br>5xx:表示服务器的差错 502网关无响应 503服务不可用 504网关超时 505HTTP版本不支持</p>
+<h5 id="首部行"><a href="#首部行" class="headerlink" title="首部行"></a>首部行</h5><p>用来说明浏览器 服务器 报文主体的一些信息 首部行可以有好几行 也可以不使用 每一个首部行都包含首都字段名和它的值 每一行结束都有CRLF 首部行结束后还要隔一个空行与后面的实体主体分开</p>
+<h5 id="实体主体-entity-body"><a href="#实体主体-entity-body" class="headerlink" title="实体主体(entity body)"></a>实体主体(entity body)</h5><p>请求报文中一般都不用这个字段 有些响应报文中也可能不用</p>
+<h4 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h4><p>HTTPS是对HTTP的一个延展 在TLS(Transport Layer Security)或SSL(Secure Socket Layer)之上 常用端口443<br>HTTPS加密所有数据 包括报文头部请求/响应报文</p>
+<h5 id="HTTPS通信原理"><a href="#HTTPS通信原理" class="headerlink" title="HTTPS通信原理"></a>HTTPS通信原理</h5><ol>
+<li>客户使用https的URL访问web服务器 要求与服务器建立ssl连接</li>
+<li>服务器收到请求后 将网站的证书信息(包含公钥)返回给客户端</li>
+<li>客户端的浏览器与web服务器协商ssl连接安全等级 </li>
+<li>客户端浏览器协商完毕 建立会话密钥 然后利用网站给的公钥将会话密钥加密冰川送给服务器</li>
+<li>服务器利用自己的私钥解谜出会话密钥</li>
+<li>服务器利用会话密钥加密与客户端的通信</li>
+</ol>
+<h2 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a>网络编程</h2><h3 id="socket"><a href="#socket" class="headerlink" title="socket"></a>socket</h3><h4 id="创建socket"><a href="#创建socket" class="headerlink" title="创建socket"></a>创建socket</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">socket</span><span class="params">(<span class="type">int</span> domain, <span class="type">int</span> type, <span class="type">int</span> protocol)</span>;</span><br></pre></td></tr></table></figure>
+<p>domain代表底层协议簇 type参数指定服务类型 服务类型有流服务(Sock_Stream) 数据报服务(Sock_Ugram) 对于TCP/IP协议簇来说 流服务指TCP协议 数据包服务指UDP协议 Linux2.6.17后 服务类型新增了 Sock_Nonblock(创建的socket为非阻塞的) Sock_Cloexec(用fork调用创建子进程时在子进程中关闭该socket)<br>protocol参数指在前两个参数构成的协议集合下选择一个具体的协议 一般所有情况下都把它设置为0表示使用默认协议<br>socket()调用成功返回一个socket文件描述符 失败返回-1 并设置errno</p>
+<h4 id="命名socket"><a href="#命名socket" class="headerlink" title="命名socket"></a>命名socket</h4><p>将一个socket与socket地址绑定成为命名socket 服务器程序需要命名socket 只有命名后客户端才知道如何连接它 客户端则通常不需要命名socket采用匿名方式(使用系统自动分配的socket地址)</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">bind</span><span class="params">(<span class="type">int</span> sockfd, <span class="type">const</span> <span class="keyword">struct</span> sockaddr *my_addr, <span class="type">socklen_t</span> addrlen)</span>;</span><br></pre></td></tr></table></figure>
+<p>bind()将my_addr所指的socket地址分配给未命名的sockfd文件描述符 addrlen指出socket地址的长度<br>bind()成功返回0 失败返回-1 并设置errno 两种常见的errno为 EACCES(被绑定的地址是受保护的 只有root能访问) EADDRINUSE(被绑定的地址正在使用 比如将socket绑定到一个处于TIME_WAIT状态的socket地址)</p>
+<h4 id="监听socket"><a href="#监听socket" class="headerlink" title="监听socket"></a>监听socket</h4><p>socket命名后需要系统调用创建一个监听队列来存放待处理的客户连接</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">listen</span><span class="params">(<span class="type">int</span> sockfd, <span class="type">int</span> backlog)</span>;</span><br></pre></td></tr></table></figure>
+<p>sockfd指定被监听的socket backlog提示内核监听队列的最大长度 若超过最大长度 服务器不受理新的客户连接 客户端也将受到ECONNREFUSED错误信息 Linux2.2之后 backlog指标是处于完全连接状态(ESTABLISHED)的socket的上限 处于半连接状态(SYN_RCVD)的socket上限由<code>/proc/sys/net/ipv4/tcp_max_syn_backlog</code>定义 backlog一般是5<br>listen()成功返回0 失败返回-1 并设置errno</p>
+<h4 id="接受连接"><a href="#接受连接" class="headerlink" title="接受连接"></a>接受连接</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">accept</span><span class="params">(<span class="type">int</span> sockfd, <span class="keyword">struct</span> sockaddr *addr, <span class="type">socklen_t</span> *addrlen)</span>;</span><br></pre></td></tr></table></figure>
+<p>sockfd是listen后的监听socket addr获取被接受连接的远端socket地址 长度为addrlen<br>accpet成功返回一个新的连接socket 该socket唯一的标识了被接受的这个连接 服务器可通过读写该socket来与被接受连接对应的客户端通信<br>accept失败返回-1 并设置errno<br>accept()对于客户端网络断开毫不知情 accept只是从监听队列中取连接 不管连接处于何种状态 也不关心网络变化</p>
+<h4 id="发起连接"><a href="#发起连接" class="headerlink" title="发起连接"></a>发起连接</h4><p>客户端通过connect来主动与服务器建立连接</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">connect</span><span class="params">(<span class="type">int</span> sockfd, <span class="keyword">struct</span> sockaddr *serv_addr, <span class="type">socklen_t</span> *addrlen)</span>;</span><br></pre></td></tr></table></figure>
+<p>sockfd参数由socket系统调用返回一个socket serv_addr是服务器监听的socket地址 长度为addrlen<br>connect成功返回0 一旦成功连接 sockfd唯一标识这个连接 客户端可以通过读写sockfd来与服务器通信<br>connect失败返回-1并设置errno 常见的errno ECONNREFUSED(目标端口不存在 连接被拒绝) ETIMEDOUT(连接超时)</p>
+<h4 id="关闭连接"><a href="#关闭连接" class="headerlink" title="关闭连接"></a>关闭连接</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">close</span><span class="params">(<span class="type">int</span> fd)</span></span><br></pre></td></tr></table></figure>
+<p>fd是待关闭的socket close并非总是关闭一个连接 只是将fd的引用计数-1 只有当fd=0的时候才真正关闭连接 多进程程序中 一次fork()默认将父进程中打开的socket引用计数+1 因此我们必须在父进程和子进程中都对该socket执行close才能关闭连接</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">shutdown</span><span class="params">(<span class="type">int</span> sockfd,<span class="type">int</span> howto)</span></span><br></pre></td></tr></table></figure>
+<p>sockfd指待关闭的socket howto决定如何关闭 取值有SHUT_RD(关闭sockfd上读的这部分 若应用程序不再针对socket文件描述符进行读操作 就丢弃) SHUT_WR(关闭sockfd上写的这部分 sockfd的发送缓冲区中的数据会在真正关闭连接前全部发送出去 应用程序不可再对该socket文件描述符执行写操作 这时的情况下连接处于半关闭状态) SHUT_RDWR(同时关闭sockfd上的读和写)<br>shutdown()能分别关闭或者都关闭读和写 close只能将读写同时关闭<br>shutdown成功返回0 失败返回-1 并设置errno</p>
+<h4 id="数据读写"><a href="#数据读写" class="headerlink" title="数据读写"></a>数据读写</h4><h5 id="TCP数据读写"><a href="#TCP数据读写" class="headerlink" title="TCP数据读写"></a>TCP数据读写</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="type">ssize_t</span> <span class="title function_">recv</span><span class="params">(<span class="type">int</span> sockfd, <span class="type">void</span> *buf, <span class="type">size_t</span> len, <span class="type">int</span> flags)</span></span><br><span class="line"></span><br><span class="line"><span class="type">ssize_t</span> <span class="title function_">send</span><span class="params">(<span class="type">int</span> sockfd, <span class="type">const</span> <span class="type">void</span> *buf, <span class="type">size_t</span> len, <span class="type">int</span> flags)</span></span><br></pre></td></tr></table></figure>
+<p>recv读取sockfd上的数据 buf和len指定读缓冲区的位置和大小 flag通常设置为0<br>recv成功返回读取到的数据长度 可能小于我们期望的长度 因此我们可能需要多次调用recv才能读取到完整的数据<br>recv返回0的时候一位置对方关闭连接 recv出错返回-1 并设置errno</p>
+<p>send往sockfd上写入数据 buf和len指定写缓冲区的位置和大小 send成功时返回实际写入的数据的长度<br>send失败返回=1 并设置errno</p>
+<h5 id="UDP数据读写"><a href="#UDP数据读写" class="headerlink" title="UDP数据读写"></a>UDP数据读写</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="type">ssize_t</span> <span class="title function_">recvfrom</span><span class="params">(<span class="type">int</span> sockfd, <span class="type">void</span> *buf, <span class="type">size_t</span> len, <span class="type">int</span> flags, <span class="keyword">struct</span> sockaddr *src_addr, <span class="type">socklen_t</span> *addrlen)</span></span><br><span class="line"></span><br><span class="line"><span class="type">ssize_t</span> <span class="title function_">send</span><span class="params">(<span class="type">int</span> sockfd, <span class="type">const</span> <span class="type">void</span> *buf, <span class="type">size_t</span> len, <span class="type">int</span> flags, <span class="type">const</span> <span class="keyword">struct</span> sockaddr *dest_addr, <span class="type">socklen_t</span> addrlen)</span></span><br></pre></td></tr></table></figure>
+<p>recvfrom读取sockfd上的数据 buf和len指定读缓冲区的位置和大小 因为UDP通信没有连接的概念 所以每次读取数据都要获取发送端的socket地址 即src_addr 地址的长度为addrlen<br>sendto往sockfd上写入数据 buf和len指定写缓冲区的位置和大小 dest_addr指定接收端的socket地址 地址的长度为addrlen</p>
+<p>recvfrom和sendto也可以用于TCP连接 只需要把最后两个参数设置为NULL 因为TCP是面向连接的 已经连接了就知道对方的socket地址了</p>
+<h5 id="通用读写函数"><a href="#通用读写函数" class="headerlink" title="通用读写函数"></a>通用读写函数</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="type">ssize_t</span> <span class="title function_">recvmsg</span><span class="params">(<span class="type">int</span> sockfd, <span class="keyword">struct</span> msghdr *msg, <span class="type">int</span> flags)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">ssize_t</span> <span class="title function_">sendmsg</span><span class="params">(<span class="type">int</span> sockfd, <span class="keyword">struct</span> msghdr *msg, <span class="type">int</span> flags)</span>;</span><br></pre></td></tr></table></figure>
+<p>sockfd指定被操作的目标socket msg是msghdr结构体的指针</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">msghdr</span>&#123;</span></span><br><span class="line">    <span class="type">void</span> *msg_name; <span class="comment">//socket地址 TCP中被设置为NULL</span></span><br><span class="line">    <span class="type">socklen_t</span> msg_namelen; <span class="comment">//socket地址长度</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">iovec</span>* <span class="title">msg_iov</span>;</span> <span class="comment">//分散内存块</span></span><br><span class="line">    <span class="type">int</span> msg_iovlen;  <span class="comment">//分散内存块数量</span></span><br><span class="line">    <span class="type">void</span> *msg_control; <span class="comment">//指向辅助数据的起始位置</span></span><br><span class="line">    <span class="type">socklen_t</span> msg_controllen; <span class="comment">//辅助数据大小</span></span><br><span class="line">    <span class="type">int</span> msg_flags; <span class="comment">//复制函数中的flags参数 在调用中更新</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">iovec</span>&#123;</span><span class="comment">//分散内存块</span></span><br><span class="line">    <span class="type">void</span> *iov_base;<span class="comment">//内存起始位置</span></span><br><span class="line">    <span class="type">size_t</span> iov_len;<span class="comment">//内存的长度</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="带外标记"><a href="#带外标记" class="headerlink" title="带外标记"></a>带外标记</h4><p>就是紧急数据需要接受 内核通知应用程序由带外数据到达的两种常见方式 I/O复用产生的异常事件和SIGURG信号<br>应用程序收到了需要接受带外数据的通知 还要知道带外数据在数据流的具体位置才能准确接收</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">sockatmark</span><span class="params">(<span class="type">int</span> sockfd)</span>;</span><br></pre></td></tr></table></figure>
+<p>sockatmark判断sockfd下一个读取到的数据是否是带外数据 是就返回1 利用带MSG_OOB标志的recv调用来接收带外数据 不是就返回0</p>
+<h4 id="地址信息函数"><a href="#地址信息函数" class="headerlink" title="地址信息函数"></a>地址信息函数</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">getsockname</span><span class="params">(<span class="type">int</span> sockfd, <span class="keyword">struct</span> sockaddr *address, <span class="type">socklen_t</span> *address_len)</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">getpeername</span><span class="params">(<span class="type">int</span> sockfd, <span class="keyword">struct</span> sockaddr *address, <span class="type">socklen_t</span> *address_len)</span>;</span><br></pre></td></tr></table></figure>
+<p>getsockname获取sockfd对应的本端socket地址 并存入address指向的内存中 长度为address_len<br>若实际的socket地址长度大于address指向的内存大小 socket地址会被截断<br>getsockname成功返回0 失败返回-1 并设置errno<br>getpeername获取sockfd对应的远端socket地址 参数以及返回值与getsockname相同</p>
+<h4 id="socket选项"><a href="#socket选项" class="headerlink" title="socket选项"></a>socket选项</h4><p>专门用来读取和设置socket文件描述符属性的方法</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">getsockopt</span><span class="params">(<span class="type">int</span> sockfd, <span class="type">int</span> level, <span class="type">int</span> option_name, <span class="type">void</span> *option_value, <span class="type">socklen_t</span> *<span class="keyword">restrict</span> option_len)</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">setsockopt</span><span class="params">(<span class="type">int</span> sockfd, <span class="type">int</span> level, <span class="type">int</span> option_name, <span class="type">const</span> <span class="type">void</span> *option_value, <span class="type">socklen_t</span> option_len)</span>;</span><br></pre></td></tr></table></figure>
+<p>level指定操作协议的属性(IPV4 IPV6 TCP….) option_name指定选项的名字option_value option_len指定被操作的值和长度</p>
+<p><img src="/2020/04/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/socket%E9%80%89%E9%A1%B9.png" alt="socket选项"></p>
+<p>getsockopt/setsockopt成功返回0 失败返回-1 并设置errno<br>对于服务器而言 有部分socket选项只能在调用listen前针对socket设置才有效 因为socket只能由accept调用返回 而accept从listen监听队列中接受的连接至少已经完成了TCP三次握手的前两个步骤(监听队列中的连接至少已经进入了SYN_RCVD状态) 说明服务器已经往被接受连接上发送了TCP同步报文段<br>可是有的socket选项应该在TCP同步报文段中设置 例如TCP最大报文段选项 对这种情况 Linux给出的解决方案是:对监听socket设置这些socket选项 那么accept发挥的连接socket将自动继承这些选项 对客户端而言 这些socket选项应该在调用connect之前设置 因为connect调用返回后说明TCP三次握手已经完成</p>
+<p>下面我们详细讨论部分重要的socket选项</p>
+<h5 id="SO-REUSEADDR选项"><a href="#SO-REUSEADDR选项" class="headerlink" title="SO_REUSEADDR选项"></a>SO_REUSEADDR选项</h5><p>设置socket选项SO_REUSEADDR来强制使用处于TIME_WAIT连接占用的socket地址<br>经过setsockopt设置选项为SO_REUSEADDR后 即使sock处于TIME_WAIT状态 与之绑定的socket地址也可以立即被重用 此外我们可通过修改内核参数<code>/proc/sys/net/ipv4/tcp_tw_recycle</code>来快速回收被关闭的socket 从而使TCP连接根本不进入TIME_WAIT状态</p>
+<h5 id="SO-RCVBUF-SO-SNDBUF"><a href="#SO-RCVBUF-SO-SNDBUF" class="headerlink" title="SO_RCVBUF/SO_SNDBUF"></a>SO_RCVBUF/SO_SNDBUF</h5><p>SO_RCVBUF/SO_SNDBUF 分别表示TCP接收缓冲区和TCP发送缓冲区的大小 我们setsockopt设置大小值后 系统会将其加倍 使其不小于某个最小值 例如TCP接收缓冲区最小值256字节 发送缓冲区最小值2048字节 系统如此做是为了确保一个TCP连接拥有足够的空闲缓冲区来处理拥塞(快速重传就期望TCP接收缓冲区至少能容纳4个大小为SMSS的TCP报文段)<br>修改TCP发送接收缓冲区大小的值文件在<code>proc/sys/net/ipv4/tcp_rmem tcp_wmem</code></p>
+<h5 id="SO-RCVLOWAT-SO-SNDLOWAT"><a href="#SO-RCVLOWAT-SO-SNDLOWAT" class="headerlink" title="SO_RCVLOWAT/SO_SNDLOWAT"></a>SO_RCVLOWAT/SO_SNDLOWAT</h5><p>SO_RCVLOWAT/SO_SNDLOWAT分别表示TCP接收缓冲区和发送缓冲区的低水位标记 一般被I/O复用系统调用来判断socket是否可读或可写<br>当TCP接收缓冲区中可读数据的总数大于其低水位标记时候 I/O复用系统调用将通知应用程序可以从对应的socket上读取数据<br>当TCP接收缓冲区中可写数据的总数大于其低水位标记时候 I/O复用系统调用将通知应用程序可以从对应的socket上写入数据<br>默认情况下的低水位标记为1字节</p>
+<h5 id="SO-LINGER"><a href="#SO-LINGER" class="headerlink" title="SO_LINGER"></a>SO_LINGER</h5><p>用于控制close关闭TCP连接时候的行为 </p>
+<h4 id="网络信息API"><a href="#网络信息API" class="headerlink" title="网络信息API"></a>网络信息API</h4><p>socket地址两个要素 IP地址 端口号 都用数值表示 因此我们用主机名表示IP 服务名表示端口号</p>
+<h5 id="gethostbyname-gethostbyaddr"><a href="#gethostbyname-gethostbyaddr" class="headerlink" title="gethostbyname/gethostbyaddr"></a>gethostbyname/gethostbyaddr</h5><p>gethostbyname函数根据主机名称获取主机完整信息gethostbyname先在etc/hosts文件中查找主机 找不到去访问DNS gethostbyaddr根据IP地址获取主机完整信息 </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;netdb.h&gt;</span></span></span><br><span class="line"><span class="keyword">struct</span> hostent *<span class="title function_">gethostbyname</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *name)</span>;</span><br><span class="line"><span class="keyword">struct</span> hostent *<span class="title function_">gethostbyaddr</span><span class="params">(<span class="type">const</span> <span class="type">void</span> *addr, <span class="type">size_t</span> len, <span class="type">int</span> type)</span></span><br></pre></td></tr></table></figure>
+<p>name主机名 addr主机IP地址 len指定addr长度 type指定ip地址类型<br>两个函数返回值都是hostent结构体类型的指针</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;netdb.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">hostent</span>&#123;</span></span><br><span class="line">    <span class="type">char</span> *h_name; <span class="comment">/*主机名*/</span></span><br><span class="line">    <span class="type">char</span> **h_aliases;<span class="comment">/*主机别名 可能有多个*/</span></span><br><span class="line">    <span class="type">int</span> h_addrtype; <span class="comment">/*地址类型*/</span></span><br><span class="line">    <span class="type">int</span> h_length;  <span class="comment">/*地址长度*/</span></span><br><span class="line">    <span class="type">char</span> **h_addr_list; <span class="comment">/*按网络字节序列出的主机IP地址列表*/</span> </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h5 id="getservbyname-getservbyport"><a href="#getservbyname-getservbyport" class="headerlink" title="getservbyname/getservbyport"></a>getservbyname/getservbyport</h5><p>getservbyname获取某个服务完整信息 getservbyport根据端口号获取服务完整信息 都是读取/etc/services文件的</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;netdb.h&gt;</span></span></span><br><span class="line"><span class="keyword">struct</span> servent *<span class="title function_">getservbyname</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *name,<span class="type">const</span> <span class="type">char</span> *proto)</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> servent *<span class="title function_">getservbyport</span><span class="params">(<span class="type">int</span> port, <span class="type">const</span> <span class="type">char</span> *proto)</span>;</span><br></pre></td></tr></table></figure>
+<p>name服务名称 port对应端口号 proto指定服务类型(tcp udp null全部)<br>返回值为servent结构体类型的指针</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;netdb.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">servent</span>&#123;</span></span><br><span class="line">    <span class="type">char</span> *s_name;<span class="comment">/*服务名称*/</span></span><br><span class="line">    <span class="type">char</span> **s_aliases;<span class="comment">/*服务别名*/</span></span><br><span class="line">    <span class="type">int</span> s_port;<span class="comment">/*端口号*/</span></span><br><span class="line">    <span class="type">char</span> *s_proto;<span class="comment">/*服务类型*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="getaddrinfo"><a href="#getaddrinfo" class="headerlink" title="getaddrinfo"></a>getaddrinfo</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;netdb.h&gt;</span></span></span><br><span class="line"><span class="type">int</span> <span class="title function_">getaddrinfo</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *hostname, <span class="type">const</span> <span class="type">char</span> *service, <span class="type">const</span> <span class="keyword">struct</span> addrinfo *hints, <span class="keyword">struct</span> addrinfo **result)</span>;</span><br></pre></td></tr></table></figure>
+<p>hostname主机名 service服务名 hints可设置NULL result指向一个链表存储getaddrinfo反馈结果</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>End of reading! -- Thanks for your supporting</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="syh 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="syh 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag"># 计算机网络</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/22/STL/" rel="prev" title="STL">
+      <i class="fa fa-chevron-left"></i> STL
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/05/04/Operating-System/" rel="next" title="Operating System">
+      Operating System <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C"><span class="nav-number">1.</span> <span class="nav-text">计算机网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#OSI%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.1.</span> <span class="nav-text">OSI模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E4%BD%A0"><span class="nav-number">1.2.</span> <span class="nav-text">数据链路层你</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MAC%E5%9C%B0%E5%9D%80"><span class="nav-number">1.2.1.</span> <span class="nav-text">MAC地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ARP%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.2.2.</span> <span class="nav-text">ARP协议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E5%B1%82"><span class="nav-number">1.3.</span> <span class="nav-text">网络层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IP%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.3.1.</span> <span class="nav-text">IP协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ICMP%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.3.2.</span> <span class="nav-text">ICMP协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IGMP%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.3.3.</span> <span class="nav-text">IGMP协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E9%80%89%E6%8B%A9%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.3.4.</span> <span class="nav-text">路由选择协议</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RIP%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">RIP协议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OSPF%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.3.4.2.</span> <span class="nav-text">OSPF协议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NAT"><span class="nav-number">1.3.4.3.</span> <span class="nav-text">NAT</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%A0%E8%BE%93%E5%B1%82"><span class="nav-number">1.4.</span> <span class="nav-text">传输层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UDP"><span class="nav-number">1.4.1.</span> <span class="nav-text">UDP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8UDP%E7%9A%84%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">使用UDP的协议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UDP%E6%95%B0%E6%8D%AE%E6%8A%A5%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">UDP数据报格式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP"><span class="nav-number">1.4.2.</span> <span class="nav-text">TCP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8TCP%E7%9A%84%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">使用TCP的协议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP%E7%9A%84%E8%BF%9E%E6%8E%A5"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">TCP的连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TCP%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">TCP可靠传输的工作原理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%81%9C%E6%AD%A2%E7%AD%89%E5%BE%85%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.4.2.3.1.</span> <span class="nav-text">停止等待协议</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BF%9E%E7%BB%ADARQ%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.4.2.3.2.</span> <span class="nav-text">连续ARQ协议</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#TCP%E6%8A%A5%E6%96%87%E9%A6%96%E9%83%A8%E6%A0%BC%E5%BC%8F"><span class="nav-number">1.4.2.3.3.</span> <span class="nav-text">TCP报文首部格式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#TCP%E7%9A%84%E8%BF%90%E8%BE%93%E8%BF%9E%E6%8E%A5%E7%AE%A1%E7%90%86"><span class="nav-number">1.4.2.3.4.</span> <span class="nav-text">TCP的运输连接管理</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#TCP%E8%BF%9E%E6%8E%A5%E5%BB%BA%E7%AB%8B"><span class="nav-number">1.4.2.3.4.1.</span> <span class="nav-text">TCP连接建立</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#TCP%E8%BF%9E%E6%8E%A5%E9%87%8A%E6%94%BE"><span class="nav-number">1.4.2.3.4.2.</span> <span class="nav-text">TCP连接释放</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%B1%82"><span class="nav-number">1.5.</span> <span class="nav-text">应用层</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS%E5%9F%9F%E5%90%8D%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.5.1.</span> <span class="nav-text">DNS域名系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%87%E7%BB%B4%E7%BD%91www"><span class="nav-number">1.5.2.</span> <span class="nav-text">万维网www</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%9F%E4%B8%80%E8%B5%84%E6%BA%90%E5%AE%9A%E4%BD%8D%E7%AC%A6URL"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">统一资源定位符URL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B6%85%E6%96%87%E6%9C%AC%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AEHTTP"><span class="nav-number">1.5.2.2.</span> <span class="nav-text">超文本传输协议HTTP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cookie"><span class="nav-number">1.5.2.3.</span> <span class="nav-text">cookie</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cookie%E4%B8%8Esession%E5%8C%BA%E5%88%AB"><span class="nav-number">1.5.2.4.</span> <span class="nav-text">cookie与session区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84"><span class="nav-number">1.5.2.5.</span> <span class="nav-text">HTTP报文结构</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B%E8%A1%8C"><span class="nav-number">1.5.2.5.1.</span> <span class="nav-text">开始行</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#GET%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87"><span class="nav-number">1.5.2.5.2.</span> <span class="nav-text">GET请求报文</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#POST%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87"><span class="nav-number">1.5.2.5.3.</span> <span class="nav-text">POST请求报文</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HTTP%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87"><span class="nav-number">1.5.2.5.4.</span> <span class="nav-text">HTTP响应报文</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95"><span class="nav-number">1.5.2.5.4.1.</span> <span class="nav-text">请求方法</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#GET-POST%E5%8C%BA%E5%88%AB"><span class="nav-number">1.5.2.5.4.2.</span> <span class="nav-text">GET&#x2F;POST区别</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E7%A0%81%E7%A7%8D%E7%B1%BB"><span class="nav-number">1.5.2.5.4.3.</span> <span class="nav-text">状态码种类</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%A6%96%E9%83%A8%E8%A1%8C"><span class="nav-number">1.5.2.5.5.</span> <span class="nav-text">首部行</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%9E%E4%BD%93%E4%B8%BB%E4%BD%93-entity-body"><span class="nav-number">1.5.2.5.6.</span> <span class="nav-text">实体主体(entity body)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTPS"><span class="nav-number">1.5.2.6.</span> <span class="nav-text">HTTPS</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#HTTPS%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86"><span class="nav-number">1.5.2.6.1.</span> <span class="nav-text">HTTPS通信原理</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B"><span class="nav-number">1.6.</span> <span class="nav-text">网络编程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#socket"><span class="nav-number">1.6.1.</span> <span class="nav-text">socket</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAsocket"><span class="nav-number">1.6.1.1.</span> <span class="nav-text">创建socket</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E5%90%8Dsocket"><span class="nav-number">1.6.1.2.</span> <span class="nav-text">命名socket</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%91%E5%90%ACsocket"><span class="nav-number">1.6.1.3.</span> <span class="nav-text">监听socket</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8E%A5%E5%8F%97%E8%BF%9E%E6%8E%A5"><span class="nav-number">1.6.1.4.</span> <span class="nav-text">接受连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%91%E8%B5%B7%E8%BF%9E%E6%8E%A5"><span class="nav-number">1.6.1.5.</span> <span class="nav-text">发起连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E9%97%AD%E8%BF%9E%E6%8E%A5"><span class="nav-number">1.6.1.6.</span> <span class="nav-text">关闭连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%86%99"><span class="nav-number">1.6.1.7.</span> <span class="nav-text">数据读写</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#TCP%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%86%99"><span class="nav-number">1.6.1.7.1.</span> <span class="nav-text">TCP数据读写</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#UDP%E6%95%B0%E6%8D%AE%E8%AF%BB%E5%86%99"><span class="nav-number">1.6.1.7.2.</span> <span class="nav-text">UDP数据读写</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%80%9A%E7%94%A8%E8%AF%BB%E5%86%99%E5%87%BD%E6%95%B0"><span class="nav-number">1.6.1.7.3.</span> <span class="nav-text">通用读写函数</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%A6%E5%A4%96%E6%A0%87%E8%AE%B0"><span class="nav-number">1.6.1.8.</span> <span class="nav-text">带外标记</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%B0%E5%9D%80%E4%BF%A1%E6%81%AF%E5%87%BD%E6%95%B0"><span class="nav-number">1.6.1.9.</span> <span class="nav-text">地址信息函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#socket%E9%80%89%E9%A1%B9"><span class="nav-number">1.6.1.10.</span> <span class="nav-text">socket选项</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#SO-REUSEADDR%E9%80%89%E9%A1%B9"><span class="nav-number">1.6.1.10.1.</span> <span class="nav-text">SO_REUSEADDR选项</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SO-RCVBUF-SO-SNDBUF"><span class="nav-number">1.6.1.10.2.</span> <span class="nav-text">SO_RCVBUF&#x2F;SO_SNDBUF</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SO-RCVLOWAT-SO-SNDLOWAT"><span class="nav-number">1.6.1.10.3.</span> <span class="nav-text">SO_RCVLOWAT&#x2F;SO_SNDLOWAT</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SO-LINGER"><span class="nav-number">1.6.1.10.4.</span> <span class="nav-text">SO_LINGER</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E4%BF%A1%E6%81%AFAPI"><span class="nav-number">1.6.1.11.</span> <span class="nav-text">网络信息API</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#gethostbyname-gethostbyaddr"><span class="nav-number">1.6.1.11.1.</span> <span class="nav-text">gethostbyname&#x2F;gethostbyaddr</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#getservbyname-getservbyport"><span class="nav-number">1.6.1.11.2.</span> <span class="nav-text">getservbyname&#x2F;getservbyport</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#getaddrinfo"><span class="nav-number">1.6.1.11.3.</span> <span class="nav-text">getaddrinfo</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="syh"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">syh</p>
+  <div class="site-description" itemprop="description">Algorithm & Open source by Ruojhen</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shaoyuanhangyes" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shaoyuanhangyes" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:shaoyuanhangoutlook@gmail.com" title="E-Mail → mailto:shaoyuanhangoutlook@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/1349974130" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;1349974130" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://plus.google.com/110657431429268241192" title="Google → https:&#x2F;&#x2F;plus.google.com&#x2F;110657431429268241192" rel="noopener" target="_blank"><i class="fab fa-google fa-fw"></i>Google</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Ruojhen_syh" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Ruojhen_syh" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/Ruojhen_syh" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;Ruojhen_syh" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fab fa-accessible-icon"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">syh</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'http://example.com/2020/04/29/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/',]
+      });
+      });
+  </script>
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '0432aa8796842fef84e6',
+      clientSecret: '1f57cccd096d17be4bae86b5ffd966372dc71aad',
+      repo        : 'gitalk',
+      owner       : 'shaoyuanhangyes',
+      admin       : ['shaoyuanhangyes'],
+      id          : '136ec24bc0208338a354155d260e392e',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>

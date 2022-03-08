@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.jpg">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="MySQLWindows启动MySQL1234#一定要利用管理员权限打开cmd命令行net start mysql &#x2F;&#x2F;启动mysql的服务mysql -u root -p#输入正确密码后登陆成功 编码问题遇到了各种各样的输入中文空白或者乱码 客户端字符集更改为gbk即可 1234#在Mysql目录下的my.ini中[mysql]# 设置mysql客户端默认字符集default-character">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL">
+<meta property="og:url" content="http://example.com/2020/01/07/MySQL/index.html">
+<meta property="og:site_name" content="shaoyuanhangyes">
+<meta property="og:description" content="MySQLWindows启动MySQL1234#一定要利用管理员权限打开cmd命令行net start mysql &#x2F;&#x2F;启动mysql的服务mysql -u root -p#输入正确密码后登陆成功 编码问题遇到了各种各样的输入中文空白或者乱码 客户端字符集更改为gbk即可 1234#在Mysql目录下的my.ini中[mysql]# 设置mysql客户端默认字符集default-character">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-01-07T13:46:02.000Z">
+<meta property="article:modified_time" content="2020-02-21T12:00:12.277Z">
+<meta property="article:author" content="syh">
+<meta property="article:tag" content="MySQL">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2020/01/07/MySQL/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>MySQL | shaoyuanhangyes</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">shaoyuanhangyes</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">shaoyuanhangyes@outlook.com</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">27</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">17</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">51</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/shaoyuanhangyes" class="github-corner" title="Ruojhen_syh" aria-label="Ruojhen_syh" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/01/07/MySQL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="syh">
+      <meta itemprop="description" content="Algorithm & Open source by Ruojhen">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shaoyuanhangyes">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MySQL
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-07 21:46:02" itemprop="dateCreated datePublished" datetime="2020-01-07T21:46:02+08:00">2020-01-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-21 20:00:12" itemprop="dateModified" datetime="2020-02-21T20:00:12+08:00">2020-02-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Database/" itemprop="url" rel="index"><span itemprop="name">Database</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h2><h3 id="Windows启动MySQL"><a href="#Windows启动MySQL" class="headerlink" title="Windows启动MySQL"></a>Windows启动MySQL</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#一定要利用管理员权限打开cmd命令行</span></span><br><span class="line">net start mysql //启动mysql的服务</span><br><span class="line">mysql -u root -p</span><br><span class="line"><span class="comment">#输入正确密码后登陆成功</span></span><br></pre></td></tr></table></figure>
+<h3 id="编码问题"><a href="#编码问题" class="headerlink" title="编码问题"></a>编码问题</h3><p>遇到了各种各样的输入中文空白或者乱码 客户端字符集更改为gbk即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#在Mysql目录下的my.ini中</span></span><br><span class="line">[mysql]</span><br><span class="line"><span class="comment"># 设置mysql客户端默认字符集</span></span><br><span class="line">default-character-set=gbk</span><br></pre></td></tr></table></figure>
+<span id="more"></span> 
+<h3 id="MySQL语句"><a href="#MySQL语句" class="headerlink" title="MySQL语句"></a>MySQL语句</h3><h4 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create database db_name character <span class="built_in">set</span> = utf8; <span class="comment">#db_name为数据库名字</span></span><br></pre></td></tr></table></figure>
+<h4 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop database db_name;</span><br></pre></td></tr></table></figure>
+<h4 id="选择数据库"><a href="#选择数据库" class="headerlink" title="选择数据库"></a>选择数据库</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use db_name;</span><br></pre></td></tr></table></figure>
+<h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><h5 id="数值类型"><a href="#数值类型" class="headerlink" title="数值类型"></a>数值类型</h5><table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">字节</th>
+<th align="center">范围(无符号)</th>
+<th align="center">范围(有符号)</th>
+<th align="center">注释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Tinyint</td>
+<td align="center">1字节</td>
+<td align="center">(-128,127)</td>
+<td align="center">(0,255)</td>
+<td align="center">小整数</td>
+</tr>
+<tr>
+<td align="center">Smallint</td>
+<td align="center">2字节</td>
+<td align="center">(-32 768,32 767)</td>
+<td align="center">(0,65 535)</td>
+<td align="center">大整数</td>
+</tr>
+<tr>
+<td align="center">Mediumint</td>
+<td align="center">3字节</td>
+<td align="center">(-8 388 608,8 388 607)</td>
+<td align="center">(0,16 777 215)</td>
+<td align="center">大整数</td>
+</tr>
+<tr>
+<td align="center">int</td>
+<td align="center">4字节</td>
+<td align="center">(-2 147 483 648,2 147 483 647)</td>
+<td align="center">(0,4 294 967 295)</td>
+<td align="center">大整数</td>
+</tr>
+<tr>
+<td align="center">Bigint</td>
+<td align="center">8字节</td>
+<td align="center">(-9 223 372 036 854 775 808，9 223 372 036 854 775 807)</td>
+<td align="center">(0,18 446 744 073 709 551 615)</td>
+<td align="center">极大整数</td>
+</tr>
+<tr>
+<td align="center">Float</td>
+<td align="center">4字节</td>
+<td align="center">有效数字6-7位</td>
+<td align="center"></td>
+<td align="center">单精度浮点数</td>
+</tr>
+<tr>
+<td align="center">Double</td>
+<td align="center">8字节</td>
+<td align="center">有效数字15-16位</td>
+<td align="center"></td>
+<td align="center">双精度浮点数</td>
+</tr>
+</tbody></table>
+<h5 id="日期时间"><a href="#日期时间" class="headerlink" title="日期时间"></a>日期时间</h5><table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">字节</th>
+<th align="center">范围</th>
+<th align="center">格式</th>
+<th align="center">注释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Date</td>
+<td align="center">3字节</td>
+<td align="center">1000-01-01/9999-12-31</td>
+<td align="center">YYYY-MM-DD</td>
+<td align="center">日期</td>
+</tr>
+<tr>
+<td align="center">Time</td>
+<td align="center">3字节</td>
+<td align="center"></td>
+<td align="center">HH:MM:SS</td>
+<td align="center">时间或持续时间</td>
+</tr>
+<tr>
+<td align="center">Year</td>
+<td align="center">1字节</td>
+<td align="center">1901/2155</td>
+<td align="center">YYYY</td>
+<td align="center">年份</td>
+</tr>
+<tr>
+<td align="center">Datatime</td>
+<td align="center">8字节</td>
+<td align="center">1000-01-01 00:00:00/9999-12-31 23:59:59</td>
+<td align="center">YYYY-MM-DD HH:MM:SS</td>
+<td align="center">具体时间</td>
+</tr>
+<tr>
+<td align="center">TimeStamp</td>
+<td align="center">4字节</td>
+<td align="center">1970-01-01 00:00:00/2038-01-19 03:14:07</td>
+<td align="center">YYYY-MM-DD HH:MM:SS</td>
+<td align="center">时间戳</td>
+</tr>
+<tr>
+<td align="center">插入时间数据必须加双引号</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h5 id="字符串类型"><a href="#字符串类型" class="headerlink" title="字符串类型"></a>字符串类型</h5><table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">字节</th>
+<th align="center">注释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Char</td>
+<td align="center">0-255字节</td>
+<td align="center">定长字符串</td>
+</tr>
+<tr>
+<td align="center">Varchar</td>
+<td align="center">0-65535字节</td>
+<td align="center">变长字符串</td>
+</tr>
+<tr>
+<td align="center">Blob</td>
+<td align="center">0-65535字节</td>
+<td align="center">二进制形式的长文本数据</td>
+</tr>
+<tr>
+<td align="center">Text</td>
+<td align="center">0-65535字节</td>
+<td align="center">长文本数据</td>
+</tr>
+</tbody></table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Mysql5.0以上 汉字字节数与编码有关 UTF-8中一个汉字3个字节 GBK中一个汉字2个字节</span></span><br></pre></td></tr></table></figure>
+<h4 id="创建-删除模式"><a href="#创建-删除模式" class="headerlink" title="创建/删除模式"></a>创建/删除模式</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">create schema &lt;模式名&gt; authorization &lt;用户名&gt;</span><br><span class="line">drop schema &lt;模式名&gt; &lt;cascade/restrict&gt;</span><br><span class="line"><span class="comment">#cascade级联 删除模式的同时把该模式下所有的数据库对象全部删除</span></span><br><span class="line"><span class="comment">#restrict限制 如果该模式下存在已定义的数据库对象(表/视图) 就拒绝删除语句的执行</span></span><br></pre></td></tr></table></figure>
+<h4 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">create table Student(<span class="comment">#学生信息表</span></span><br><span class="line">    Sno varchar(9) primary key,<span class="comment">#Sno为主键</span></span><br><span class="line">    Sname varchar(20) unique,<span class="comment">#唯一</span></span><br><span class="line">    Ssex varchar(2),</span><br><span class="line">    Sage smallint,</span><br><span class="line">    Sdept varchar(20)</span><br><span class="line">)charset utf8;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">学号Sno</th>
+<th align="center">姓名Sname</th>
+<th align="center">性别Ssex</th>
+<th align="center">年龄Sage</th>
+<th align="center">专业Sdept</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#外键示范</span></span><br><span class="line">create table Course(</span><br><span class="line">    Cno varchar(4) primary key,<span class="comment">#Cno为主键</span></span><br><span class="line">    Cname varchar(40) not null,</span><br><span class="line">    Cpno varchar(4),<span class="comment">#Cpno为外键 参照表是Course下的Cno</span></span><br><span class="line">    Ccredit smallint,</span><br><span class="line">    foreign key(Cpno) references Course(Cno)<span class="comment">#参照表可以是自己表里的字段</span></span><br><span class="line">)charset utf8;</span><br></pre></td></tr></table></figure>
+<h4 id="修改表"><a href="#修改表" class="headerlink" title="修改表"></a>修改表</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">alter table Student</span><br><span class="line">add entrance <span class="built_in">date</span> not null;<span class="comment">#为Student表添加一列entrance 类型为date 约束为not null</span></span><br><span class="line"><span class="comment">#增加新的一列的数据都为空</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alter table Student</span><br><span class="line">drop ent;<span class="comment">#删除Student表中名为ent的一列</span></span><br></pre></td></tr></table></figure>
+<h4 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop table Student;</span><br></pre></td></tr></table></figure>
+<h4 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h4><p>表的数据量较大时 查询操作比较耗时 建立索引加快查询速度 能快速定位到需要查询的内容</p>
+<h5 id="建立索引"><a href="#建立索引" class="headerlink" title="建立索引"></a>建立索引</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create unique index Stusno on Student(Sno) asc/desc);<span class="comment">#Stusno为索引名 asc升序desc降序</span></span><br></pre></td></tr></table></figure>
+<h5 id="修改索引"><a href="#修改索引" class="headerlink" title="修改索引"></a>修改索引</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter index Stusno rename to Ssno;<span class="comment">#更改旧索引名Stusno为Ssno</span></span><br></pre></td></tr></table></figure>
+<h5 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drop index Ssno;<span class="comment">#删除名为Ssno的索引</span></span><br></pre></td></tr></table></figure>
+<h4 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert into Student (字段名,字段名) values(值,值);</span><br></pre></td></tr></table></figure>
+<h4 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h4><p>查询全体记录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from &lt;表名&gt;</span><br></pre></td></tr></table></figure>
+<p>查询部分字段记录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select &lt;字段名&gt;,&lt;字段名&gt; from &lt;表名&gt;</span><br></pre></td></tr></table></figure>
+<p>查询表内某一字段存在大量重复元素时 使用distinct</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select distinct &lt;字段名&gt; from &lt;表名&gt;</span><br></pre></td></tr></table></figure>
+<h5 id="where"><a href="#where" class="headerlink" title="where"></a>where</h5><table>
+<thead>
+<tr>
+<th align="center">学号Sno</th>
+<th align="center">姓名Sname</th>
+<th align="center">性别Ssex</th>
+<th align="center">年龄Sage</th>
+<th align="center">专业Sdept</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">201215121</td>
+<td align="center">张三</td>
+<td align="center">男</td>
+<td align="center">20</td>
+<td align="center">CS</td>
+</tr>
+<tr>
+<td align="center">201215122</td>
+<td align="center">李四</td>
+<td align="center">女</td>
+<td align="center">19</td>
+<td align="center">IS</td>
+</tr>
+<tr>
+<td align="center">201215123</td>
+<td align="center">王五</td>
+<td align="center">女</td>
+<td align="center">18</td>
+<td align="center">MA</td>
+</tr>
+<tr>
+<td align="center">201215124</td>
+<td align="center">赵六</td>
+<td align="center">男</td>
+<td align="center">22</td>
+<td align="center">IE</td>
+</tr>
+</tbody></table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">select Sno,Sname from student <span class="built_in">where</span> Sage&lt;20;</span><br><span class="line">select Sno,Sname from student <span class="built_in">where</span> Sdept=<span class="string">&quot;CS&quot;</span>;</span><br><span class="line">select Sno,Cno from SC <span class="built_in">where</span> Grade is null;<span class="comment">#is不能换=</span></span><br><span class="line"></span><br><span class="line">select Sno,Sname,Sage from student <span class="built_in">where</span> Sage between 19 and 20;<span class="comment">#Sage在19-20之间(包括19和20)</span></span><br><span class="line">select Sno,Sname from student <span class="built_in">where</span> Sage not between 19 and 20;<span class="comment">#Sage不在19-20之间</span></span><br><span class="line">select Sno,Sname from student <span class="built_in">where</span> Sdept <span class="keyword">in</span> (<span class="string">&quot;CS&quot;</span>,<span class="string">&quot;IS&quot;</span>);</span><br><span class="line">select Sno,Sname from student <span class="built_in">where</span> Sdept not <span class="keyword">in</span> (<span class="string">&quot;CS&quot;</span>,<span class="string">&quot;IS&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h5 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h5><p>字符匹配 使用like和%<br>a%  以a为开头的字符串<br>a%b 以a为开头b为结尾的字符串 长度不限<br>a_b 以a为开头b为结尾的长度为3的字符串  <code>#字符串为汉字时要注意编码格式 注意一个汉字占几位</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select Sno,Sname from student <span class="built_in">where</span> Sname like <span class="string">&quot;刘%&quot;</span>;<span class="comment">#查询Sname姓刘的所有人</span></span><br><span class="line">select Sno,Sname from student <span class="built_in">where</span> Sname like <span class="string">&quot;刘_&quot;</span>;<span class="comment">#查询Sname姓刘的两个字名字的人</span></span><br><span class="line">select Sno,Sname from student <span class="built_in">where</span> Sname like <span class="string">&quot;_阳%&quot;</span>;<span class="comment">#查询第二个字为阳的名字</span></span><br><span class="line">select Sno,Sname from student <span class="built_in">where</span> Sname not like <span class="string">&quot;刘%&quot;</span>;</span><br></pre></td></tr></table></figure>
+<h5 id="Order-By"><a href="#Order-By" class="headerlink" title="Order By"></a>Order By</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#数据库系统概论第5版王珊编著中提到Order By语句默认从小到大升序asc排列</span></span><br><span class="line">select * from sc order by Grade desc;<span class="comment">#查询结果按成绩从大到小 降序排列</span></span><br><span class="line">select * from sc order by Grade asc;<span class="comment">#查询结果按成绩从小到大 升序排列</span></span><br><span class="line">select * from student order by Sdept,Sage desc; <span class="comment">#同一个Sdept中Sage从大到小排列</span></span><br><span class="line"><span class="comment">#空值被认为是最大的</span></span><br></pre></td></tr></table></figure>
+<h5 id="聚焦函数"><a href="#聚焦函数" class="headerlink" title="聚焦函数"></a>聚焦函数</h5><p>函数不能用于Where语句 只能用于Select语句 或者 Group By中的Having语句</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Count()<span class="comment">#统计个数 空值也计算进去</span></span><br><span class="line">Sum()<span class="comment">#计算一列数的总和  要求存储的数据必须是数值型数据 不能是字符型数据</span></span><br><span class="line">Avg()<span class="comment">#计算一列数的平均值  要求存储的数据必须是数值型数据 不能是字符型数据</span></span><br><span class="line">Max()<span class="comment">#一列数值的最大值</span></span><br><span class="line">Min()<span class="comment">#一列数值的最小值</span></span><br></pre></td></tr></table></figure>
+<p>Distinct 查询中筛除掉指定列的重复值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">select Count(*) from student;<span class="comment">#查询学生总人数</span></span><br><span class="line">select Count(Distinct Sno) from SC;<span class="comment">#查询了选修的人数</span></span><br><span class="line">select Avg(Grade) from SC <span class="built_in">where</span> Sno=201215121;<span class="comment">#查询学号201215121的平均成绩</span></span><br><span class="line">select Max(Grade) from SC <span class="built_in">where</span> Cno=2;<span class="comment">#查询课程号为2的最高成绩</span></span><br><span class="line">select Sum(Ccredit) from SC,Course</span><br><span class="line"><span class="built_in">where</span> Sno=201215121 and SC.Cno=Course.Cno;<span class="comment">#查询Sno为201215121选课的总学分数</span></span><br></pre></td></tr></table></figure>
+<h5 id="Group-By"><a href="#Group-By" class="headerlink" title="Group By"></a>Group By</h5><p>分组后使用Having指定筛选条件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select Cno,Count(Sno) from SC Group By Cno;<span class="comment">#查询课程号和选课的人数 按照Cno的值分组 有相同Cno的值的在一个组 然后用Count函数对每个组的总人数进行计算</span></span><br><span class="line">select Sno from SC Group By Sno Having Count(*)&gt;=3;<span class="comment">#Group By按照Sno分组 Having筛选 元组个数&gt;=3 才会被查询到</span></span><br></pre></td></tr></table></figure>
+<p>Where Having 区别 Where语句作用于基本表与视图 从中选择满足条件的组 Having作用于组 从中满足条件的组</p>
+<h5 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h5><p>一次查询涉及到多个数据表</p>
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>End of reading! -- Thanks for your supporting</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.jpg" alt="syh 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="syh 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/11/11/%E5%9B%BE/" rel="prev" title="图">
+      <i class="fa fa-chevron-left"></i> 图
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/02/05/Windows%E9%85%8D%E7%BD%AEFTP/" rel="next" title="Windows配置FTP">
+      Windows配置FTP <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL"><span class="nav-number">1.</span> <span class="nav-text">MySQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Windows%E5%90%AF%E5%8A%A8MySQL"><span class="nav-number">1.1.</span> <span class="nav-text">Windows启动MySQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E7%A0%81%E9%97%AE%E9%A2%98"><span class="nav-number">1.2.</span> <span class="nav-text">编码问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL%E8%AF%AD%E5%8F%A5"><span class="nav-number">1.3.</span> <span class="nav-text">MySQL语句</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">1.3.1.</span> <span class="nav-text">创建数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">1.3.2.</span> <span class="nav-text">删除数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">1.3.3.</span> <span class="nav-text">选择数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.3.4.</span> <span class="nav-text">数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%95%B0%E5%80%BC%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">数值类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4"><span class="nav-number">1.3.4.2.</span> <span class="nav-text">日期时间</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.3.4.3.</span> <span class="nav-text">字符串类型</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA-%E5%88%A0%E9%99%A4%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.3.5.</span> <span class="nav-text">创建&#x2F;删除模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E8%A1%A8"><span class="nav-number">1.3.6.</span> <span class="nav-text">创建表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E8%A1%A8"><span class="nav-number">1.3.7.</span> <span class="nav-text">修改表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E8%A1%A8"><span class="nav-number">1.3.8.</span> <span class="nav-text">删除表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95"><span class="nav-number">1.3.9.</span> <span class="nav-text">索引</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E7%B4%A2%E5%BC%95"><span class="nav-number">1.3.9.1.</span> <span class="nav-text">建立索引</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E7%B4%A2%E5%BC%95"><span class="nav-number">1.3.9.2.</span> <span class="nav-text">修改索引</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E7%B4%A2%E5%BC%95"><span class="nav-number">1.3.9.3.</span> <span class="nav-text">删除索引</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="nav-number">1.3.10.</span> <span class="nav-text">插入数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.3.11.</span> <span class="nav-text">查询</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#where"><span class="nav-number">1.3.11.1.</span> <span class="nav-text">where</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.3.11.2.</span> <span class="nav-text">模糊查询</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Order-By"><span class="nav-number">1.3.11.3.</span> <span class="nav-text">Order By</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%81%9A%E7%84%A6%E5%87%BD%E6%95%B0"><span class="nav-number">1.3.11.4.</span> <span class="nav-text">聚焦函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Group-By"><span class="nav-number">1.3.11.5.</span> <span class="nav-text">Group By</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5%E6%9F%A5%E8%AF%A2"><span class="nav-number">1.3.11.6.</span> <span class="nav-text">连接查询</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="syh"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">syh</p>
+  <div class="site-description" itemprop="description">Algorithm & Open source by Ruojhen</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/shaoyuanhangyes" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;shaoyuanhangyes" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:shaoyuanhangoutlook@gmail.com" title="E-Mail → mailto:shaoyuanhangoutlook@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/1349974130" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;1349974130" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://plus.google.com/110657431429268241192" title="Google → https:&#x2F;&#x2F;plus.google.com&#x2F;110657431429268241192" rel="noopener" target="_blank"><i class="fab fa-google fa-fw"></i>Google</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/Ruojhen_syh" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;Ruojhen_syh" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/Ruojhen_syh" title="Instagram → https:&#x2F;&#x2F;instagram.com&#x2F;Ruojhen_syh" rel="noopener" target="_blank"><i class="fab fa-instagram fa-fw"></i>Instagram</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fab fa-accessible-icon"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">syh</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+  <script src="//cdn.jsdelivr.net/npm/quicklink@1/dist/quicklink.umd.js"></script>
+  <script>
+      window.addEventListener('load', () => {
+      quicklink({
+        timeout : 3000,
+        priority: true,
+        ignores : [uri => uri.includes('#'),uri => uri === 'http://example.com/2020/01/07/MySQL/',]
+      });
+      });
+  </script>
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '0432aa8796842fef84e6',
+      clientSecret: '1f57cccd096d17be4bae86b5ffd966372dc71aad',
+      repo        : 'gitalk',
+      owner       : 'shaoyuanhangyes',
+      admin       : ['shaoyuanhangyes'],
+      id          : '30f6b1025c02c030629f911a2d822301',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+</body>
+</html>
