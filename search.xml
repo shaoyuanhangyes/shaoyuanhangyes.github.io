@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Effective Golang</title>
+      <link href="/2022/04/11/Effective-Golang/"/>
+      <url>/2022/04/11/Effective-Golang/</url>
+      
+        <content type="html"><![CDATA[<p>Go语言精进之路</p><span id="more"></span> <h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><h3 id="以构建二进制可执行文件为目的"><a href="#以构建二进制可执行文件为目的" class="headerlink" title="以构建二进制可执行文件为目的"></a>以构建二进制可执行文件为目的</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> Go </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Go </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Redis3-0-note-chapter-2</title>
       <link href="/2021/09/07/Redis3-0-note-chapter-2/"/>
       <url>/2021/09/07/Redis3-0-note-chapter-2/</url>
