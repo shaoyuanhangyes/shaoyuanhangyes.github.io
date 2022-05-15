@@ -28,7 +28,7 @@
 <meta property="og:description" content="本文旨在记录本人学习和使用git命令操作的时候遇到的问题和解决方案  修改commit注释学习git提交文件到github的时候没有注意自己commit的命名，因此事后需要作出修改 修改最新一次的commit注释添加了commit注释，但是没有push  1$ git commit --amend">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-06-06T11:57:52.000Z">
-<meta property="article:modified_time" content="2020-11-02T14:27:30.640Z">
+<meta property="article:modified_time" content="2022-05-15T19:33:58.115Z">
 <meta property="article:author" content="syh">
 <meta property="article:tag" content="Git">
 <meta name="twitter:card" content="summary">
@@ -224,7 +224,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-02 22:27:30" itemprop="dateModified" datetime="2020-11-02T22:27:30+08:00">2020-11-02</time>
+                <time title="修改时间：2022-05-16 03:33:58" itemprop="dateModified" datetime="2022-05-16T03:33:58+08:00">2022-05-16</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -271,6 +271,22 @@
 
 <p>针对此情况 先使用stash备份当前工作区 再拉取git云端文件 最后再将备份的工作区恢复</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git stash</span><br><span class="line">git pull</span><br><span class="line">git stash pop</span><br></pre></td></tr></table></figure>
+
+<h4 id="push后发现-non-fast-forward"><a href="#push后发现-non-fast-forward" class="headerlink" title="push后发现 non-fast-forward"></a>push后发现 non-fast-forward</h4><p>起因: 因为发现本地一个cpp文件为空 以为是误操作删除了代码 所以将本地仓库回退到了上一个commit 然后修改了cpp文件内的部分代码 然后再push操作 发现报错</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ git push -u origin master</span><br><span class="line">To https://github.com/shaoyuanhangyes/LeetCode.git</span><br><span class="line"> ! [rejected]        master -&gt; master (non-fast-forward)</span><br><span class="line">error: failed to push some refs to <span class="string">&#x27;https://github.com/shaoyuanhangyes/LeetCode.git&#x27;</span></span><br><span class="line">hint: Updates were rejected because the tip of your current branch is behind</span><br><span class="line">hint: its remote counterpart. Integrate the remote changes (e.g.</span><br><span class="line">hint: <span class="string">&#x27;git pull ...&#x27;</span>) before pushing again.</span><br><span class="line">hint: See the <span class="string">&#x27;Note about fast-forwards&#x27;</span> <span class="keyword">in</span> <span class="string">&#x27;git push --help&#x27;</span> <span class="keyword">for</span> details.</span><br></pre></td></tr></table></figure>
+
+<p>分析问题: 未保证远程本地仓库的一致性 因为本地仓库回退了上一个版本 所以相当于没有及时的与远程仓库同步拉取的同时 又在本地仓库新添加了一些内容 所以push操作的时候 会检测到之前从远程仓库拉取的状态和现在的状态不一致 为了安全考虑拒绝了你的push</p>
+<p>non-fast-forward 不能快速前进 之所以不能快速前进是因为路不一样了 即在git里的提交历史出现分叉 主线不再是一条直线 git不知道如何前进 所以报错 让你来决定走哪条线</p>
+<p>解决方案1: 合并之前的历史提交 然后再push </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull --rebase origin master <span class="comment">#重定基 将提交历史趋向于一条直线</span></span><br></pre></td></tr></table></figure>
+
+<p>git pull git fetch git merge的关系为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git pull = git fetch + git merge FETCH_HEAD </span><br><span class="line"></span><br><span class="line">git pull --rebase =  git fetch + git rebase FETCH_HEAD</span><br></pre></td></tr></table></figure>
+
+<p>解决方案2: 直接用当前本地仓库内容去覆盖远程仓库内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -force</span><br></pre></td></tr></table></figure>
+
+<p>除非真的想完全覆盖远程仓库 否则不要强制执行push</p>
 
     </div>
 
@@ -375,7 +391,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9commit%E6%B3%A8%E9%87%8A"><span class="nav-number">1.</span> <span class="nav-text">修改commit注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E6%9C%80%E6%96%B0%E4%B8%80%E6%AC%A1%E7%9A%84commit%E6%B3%A8%E9%87%8A"><span class="nav-number">2.</span> <span class="nav-text">修改最新一次的commit注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E5%8E%86%E5%8F%B2%E6%8F%90%E4%BA%A4%E8%BF%87%E7%9A%84commit%E6%B3%A8%E9%87%8A"><span class="nav-number">3.</span> <span class="nav-text">修改历史提交过的commit注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%89%E5%8F%96repo"><span class="nav-number">4.</span> <span class="nav-text">拉取repo</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#pull%E5%90%8E%E6%8F%90%E7%A4%BAabort"><span class="nav-number">4.1.</span> <span class="nav-text">pull后提示abort</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9commit%E6%B3%A8%E9%87%8A"><span class="nav-number">1.</span> <span class="nav-text">修改commit注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E6%9C%80%E6%96%B0%E4%B8%80%E6%AC%A1%E7%9A%84commit%E6%B3%A8%E9%87%8A"><span class="nav-number">2.</span> <span class="nav-text">修改最新一次的commit注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E5%8E%86%E5%8F%B2%E6%8F%90%E4%BA%A4%E8%BF%87%E7%9A%84commit%E6%B3%A8%E9%87%8A"><span class="nav-number">3.</span> <span class="nav-text">修改历史提交过的commit注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%89%E5%8F%96repo"><span class="nav-number">4.</span> <span class="nav-text">拉取repo</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#pull%E5%90%8E%E6%8F%90%E7%A4%BAabort"><span class="nav-number">4.1.</span> <span class="nav-text">pull后提示abort</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#push%E5%90%8E%E5%8F%91%E7%8E%B0-non-fast-forward"><span class="nav-number">4.2.</span> <span class="nav-text">push后发现 non-fast-forward</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
