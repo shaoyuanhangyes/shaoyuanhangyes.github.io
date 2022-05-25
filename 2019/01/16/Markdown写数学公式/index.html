@@ -255,41 +255,41 @@
         <h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><p>theme/next下_config.yml中<code> mathjax: enable: true</code>要开启</p>
 <h2 id="插入数学公式"><a href="#插入数学公式" class="headerlink" title="插入数学公式"></a>插入数学公式</h2><h3 id="行内公式"><a href="#行内公式" class="headerlink" title="行内公式"></a>行内公式</h3><p><strong>行内公式</strong>是可以让公式在文中与文字或其他东西混编，不独占一行。<code> $数学公式$</code></p>
 <ul>
-<li>示例<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">质能方程 $E = mc^2$</span><br></pre></td></tr></table></figure></li>
+<li>示例<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">质能方程 <span class="symbol">$</span>E = mc^<span class="number">2</span><span class="symbol">$</span></span><br></pre></td></tr></table></figure></li>
 <li>显示<br>质能方程 $E = mc^2$<span id="more"></span> 
 <h3 id="独立公式"><a href="#独立公式" class="headerlink" title="独立公式"></a>独立公式</h3></li>
 </ul>
 <p><strong>独立公式</strong>使公式单独占一行，不与文中其他文字等混编。 <code> $$数学公式$$</code></p>
 <ul>
-<li>示例<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">质能方程 $$E = mc^2$$</span><br></pre></td></tr></table></figure></li>
+<li>示例<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">质能方程 <span class="symbol">$</span><span class="symbol">$</span>E = mc^<span class="number">2</span><span class="symbol">$</span><span class="symbol">$</span></span><br></pre></td></tr></table></figure></li>
 <li>显示<br>质能方程 $$E = mc^2$$</li>
 </ul>
 <h2 id="普通数学公式"><a href="#普通数学公式" class="headerlink" title="普通数学公式"></a>普通数学公式</h2><h3 id="加减乘除"><a href="#加减乘除" class="headerlink" title="加减乘除"></a>加减乘除</h3><p>与平时书写习惯一样</p>
 <ul>
-<li>示例<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$x = 25*y+18-z/2+10%3$$</span><br></pre></td></tr></table></figure></li>
+<li>示例<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">$</span><span class="symbol">$</span>x = <span class="number">25</span>*y+<span class="number">18</span>-z/<span class="number">2</span>+<span class="number">10</span>%<span class="number">3</span><span class="symbol">$</span><span class="symbol">$</span></span><br></pre></td></tr></table></figure></li>
 <li>显示<br>$$x = 25*y+18-z/2+10%3$$</li>
 </ul>
 <h3 id="上下标"><a href="#上下标" class="headerlink" title="上下标"></a>上下标</h3><p>使用<code>^</code>来表示上标 <code>_</code>来表示下标 同时如果上下标的内容多于一个字符 可以使用<code>&#123;&#125;</code>来将这些内容括起来当做一个整体 上下标是可以嵌套的。</p>
 <ul>
-<li>示例<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$x = a_&#123;1&#125;^n+a_&#123;2&#125;^n+a_&#123;3&#125;^n$$</span><br></pre></td></tr></table></figure></li>
+<li>示例<figure class="highlight cos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">$$x</span> = a_&#123;<span class="number">1</span>&#125;<span class="symbol">^n</span>+a_&#123;<span class="number">2</span>&#125;<span class="symbol">^n</span>+a_&#123;<span class="number">3</span>&#125;<span class="symbol">^n</span>$$</span><br></pre></td></tr></table></figure></li>
 <li>显示<br>$$x = a_{1}^n+a_{2}^n+a_{3}^n$$<br>如果希望左右两边都能有上下标，可以使用\sideset语法</li>
-<li>示例<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$\sideset&#123;^1_2&#125;&#123;^3_4&#125;\bigotimes$$</span><br></pre></td></tr></table></figure></li>
+<li>示例<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">$</span><span class="symbol">$</span>\sideset&#123;^<span class="number">1</span>_2&#125;&#123;^<span class="number">3</span>_4&#125;\bigotimes<span class="symbol">$</span><span class="symbol">$</span></span><br></pre></td></tr></table></figure></li>
 <li>显示<br>$$\sideset{^1_2}{^3_4}\bigotimes$$</li>
 </ul>
 <h3 id="括号"><a href="#括号" class="headerlink" title="括号"></a>括号</h3><p><code>()</code> <code>[]</code> 和<code>|</code>都表示它们自己，但是<code>&#123;&#125;</code>因为有特殊作用因此当需要显示大括号时一般使用<code>\lbrace \rbrace</code>来表示。</p>
 <ul>
-<li>示例<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$f(x,y) = 25*\lbrace x+(y-1)/2 \rbrace$$</span><br></pre></td></tr></table></figure></li>
+<li>示例<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">$</span><span class="symbol">$</span>f(x,y) = <span class="number">25</span>*\lbrace x+(y<span class="number">-1</span>)/<span class="number">2</span> \rbrace<span class="symbol">$</span><span class="symbol">$</span></span><br></pre></td></tr></table></figure></li>
 <li>显示<br>$$f(x,y) = 25*\lbrace x+(y-1)/2 \rbrace$$</li>
 </ul>
 <h3 id="分数"><a href="#分数" class="headerlink" title="分数"></a>分数</h3><p>分数使用<code>\frac&#123;分母&#125;&#123;分子&#125;</code>这样的语法 不过推荐使用<code>\cfrac</code>来代替<code>\frac</code>显示公式不会太挤。</p>
 <ul>
-<li>示例<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$\frac&#123;1&#125;&#123;3&#125; 与 \cfrac&#123;1&#125;&#123;3&#125;$$</span><br></pre></td></tr></table></figure></li>
+<li>示例<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">$</span><span class="symbol">$</span>\<span class="built_in">frac</span>&#123;<span class="number">1</span>&#125;&#123;<span class="number">3</span>&#125; 与 \cfrac&#123;<span class="number">1</span>&#125;&#123;<span class="number">3</span>&#125;<span class="symbol">$</span><span class="symbol">$</span></span><br></pre></td></tr></table></figure></li>
 <li>显示</li>
 </ul>
 <p>$$\frac{1}{3} 与 \cfrac{1}{3}$$</p>
 <h3 id="根号开方"><a href="#根号开方" class="headerlink" title="根号开方"></a>根号开方</h3><p>开方使用<code>\sqrt[次数]&#123;被开方数&#125;</code>这样的语法</p>
 <ul>
-<li>示例<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$$\sqrt[2]&#123;X&#125;$$</span><br><span class="line">$$\sqrt[3]&#123;Y&#125;$$</span><br><span class="line">$$\sqrt&#123;5-x&#125;$$</span><br></pre></td></tr></table></figure></li>
+<li>示例<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">$</span><span class="symbol">$</span>\<span class="built_in">sqrt</span>[<span class="number">2</span>]&#123;X&#125;<span class="symbol">$</span><span class="symbol">$</span></span><br><span class="line"><span class="symbol">$</span><span class="symbol">$</span>\<span class="built_in">sqrt</span>[<span class="number">3</span>]&#123;Y&#125;<span class="symbol">$</span><span class="symbol">$</span></span><br><span class="line"><span class="symbol">$</span><span class="symbol">$</span>\<span class="built_in">sqrt</span>&#123;<span class="number">5</span>-x&#125;<span class="symbol">$</span><span class="symbol">$</span></span><br></pre></td></tr></table></figure></li>
 <li>显示<br>$$\sqrt[2]{X}$$<br>$$\sqrt[3]{Y}$$<br>$$\sqrt{5-x}$$</li>
 </ul>
 <h2 id="特殊字符"><a href="#特殊字符" class="headerlink" title="特殊字符"></a>特殊字符</h2><h3 id="希腊字母"><a href="#希腊字母" class="headerlink" title="希腊字母"></a>希腊字母</h3><table>

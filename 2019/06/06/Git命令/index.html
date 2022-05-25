@@ -281,7 +281,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull --rebase origin master <span class="comment">#重定基 将提交历史趋向于一条直线</span></span><br></pre></td></tr></table></figure>
 
 <p>git pull git fetch git merge的关系为</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git pull = git fetch + git merge FETCH_HEAD </span><br><span class="line"></span><br><span class="line">git pull --rebase =  git fetch + git rebase FETCH_HEAD</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git pull <span class="operator">=</span> git <span class="keyword">fetch</span> <span class="operator">+</span> git <span class="keyword">merge</span> FETCH_HEAD </span><br><span class="line"></span><br><span class="line">git pull <span class="comment">--rebase =  git fetch + git rebase FETCH_HEAD</span></span><br></pre></td></tr></table></figure>
 
 <p>解决方案2: 直接用当前本地仓库内容去覆盖远程仓库内容</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push -force</span><br></pre></td></tr></table></figure>
