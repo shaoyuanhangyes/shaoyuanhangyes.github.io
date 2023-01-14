@@ -29,7 +29,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2022/04/11/Effective-Golang/effective1.jpg">
 <meta property="article:published_time" content="2022-04-11T15:45:03.000Z">
-<meta property="article:modified_time" content="2023-01-12T14:36:44.772Z">
+<meta property="article:modified_time" content="2023-01-14T14:35:45.241Z">
 <meta property="article:author" content="syh">
 <meta property="article:tag" content="Go">
 <meta name="twitter:card" content="summary">
@@ -227,7 +227,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-01-12 22:36:44" itemprop="dateModified" datetime="2023-01-12T22:36:44+08:00">2023-01-12</time>
+                <time title="修改时间：2023-01-14 22:35:45" itemprop="dateModified" datetime="2023-01-14T22:35:45+08:00">2023-01-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -393,7 +393,7 @@
 <p>以上述的pipe类型为例 Pipe函数在使用复合字面值对pipe类型进行初值构造时<br>仅对wrCh rdCh和done进行了field:value形式的显式赋值 这样pipe结构体中的其他变量的值将为其类型的初值 如wrMu</p>
 <p>从上面例子中还可以看到 通过在复合字面值构造器的类型前面增加&amp; 可以得到对应类型的指针类型变量 如上面例子中的变量p的类型即为Pipe类型指针</p>
 <p>复合字面值作为结构体值构造器的大量使用 使得即便采用类型零值时我们也会使用字面值构造器形式</p>
-
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s := myStruct&#123;&#125; <span class="comment">// 常用</span></span><br></pre></td></tr></table></figure>
     </div>
 
     
