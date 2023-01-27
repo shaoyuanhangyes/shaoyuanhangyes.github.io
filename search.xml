@@ -8,7 +8,7 @@
       <link href="/2023/01/17/kafka/"/>
       <url>/2023/01/17/kafka/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<h1 id="kafka"><a href="#kafka" class="headerlink" title="kafka"></a>kafka</h1><p>kafka是一种消息中间件 分布式流平台 用于构建实时数据管道和流应用程序</p><h2 id="名词概念"><a href="#名词概念" class="headerlink" title="名词概念"></a>名词概念</h2><p>消息记录(record) 由key value 时间戳构成</p>]]></content>
       
       
       <categories>
