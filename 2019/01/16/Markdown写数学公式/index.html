@@ -253,34 +253,33 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><p>theme/next下_config.yml中<code> mathjax: enable: true</code>要开启</p>
+        <h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><p>theme&#x2F;next下_config.yml中<code> mathjax: enable: true</code>要开启</p>
 <h2 id="插入数学公式"><a href="#插入数学公式" class="headerlink" title="插入数学公式"></a>插入数学公式</h2><h3 id="行内公式"><a href="#行内公式" class="headerlink" title="行内公式"></a>行内公式</h3><p><strong>行内公式</strong>是可以让公式在文中与文字或其他东西混编，不独占一行。<code> $数学公式$</code></p>
 <ul>
 <li>示例<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">质能方程 <span class="symbol">$</span>E = mc^<span class="number">2</span><span class="symbol">$</span></span><br></pre></td></tr></table></figure></li>
-<li>显示<br>质能方程 $E = mc^2$<span id="more"></span> 
-<h3 id="独立公式"><a href="#独立公式" class="headerlink" title="独立公式"></a>独立公式</h3></li>
+<li>显示<br>质能方程 $E &#x3D; mc^2$<span id="more"></span></li>
 </ul>
-<p><strong>独立公式</strong>使公式单独占一行，不与文中其他文字等混编。 <code> $$数学公式$$</code></p>
+<h3 id="独立公式"><a href="#独立公式" class="headerlink" title="独立公式"></a>独立公式</h3><p><strong>独立公式</strong>使公式单独占一行，不与文中其他文字等混编。 <code> $$数学公式$$</code></p>
 <ul>
 <li>示例<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">质能方程 <span class="symbol">$</span><span class="symbol">$</span>E = mc^<span class="number">2</span><span class="symbol">$</span><span class="symbol">$</span></span><br></pre></td></tr></table></figure></li>
-<li>显示<br>质能方程 $$E = mc^2$$</li>
+<li>显示<br>质能方程 $$E &#x3D; mc^2$$</li>
 </ul>
 <h2 id="普通数学公式"><a href="#普通数学公式" class="headerlink" title="普通数学公式"></a>普通数学公式</h2><h3 id="加减乘除"><a href="#加减乘除" class="headerlink" title="加减乘除"></a>加减乘除</h3><p>与平时书写习惯一样</p>
 <ul>
 <li>示例<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">$</span><span class="symbol">$</span>x = <span class="number">25</span>*y+<span class="number">18</span>-z/<span class="number">2</span>+<span class="number">10</span>%<span class="number">3</span><span class="symbol">$</span><span class="symbol">$</span></span><br></pre></td></tr></table></figure></li>
-<li>显示<br>$$x = 25*y+18-z/2+10%3$$</li>
+<li>显示<br>$$x &#x3D; 25*y+18-z&#x2F;2+10%3$$</li>
 </ul>
 <h3 id="上下标"><a href="#上下标" class="headerlink" title="上下标"></a>上下标</h3><p>使用<code>^</code>来表示上标 <code>_</code>来表示下标 同时如果上下标的内容多于一个字符 可以使用<code>&#123;&#125;</code>来将这些内容括起来当做一个整体 上下标是可以嵌套的。</p>
 <ul>
 <li>示例<figure class="highlight cos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">$$x</span> = a_&#123;<span class="number">1</span>&#125;<span class="symbol">^n</span>+a_&#123;<span class="number">2</span>&#125;<span class="symbol">^n</span>+a_&#123;<span class="number">3</span>&#125;<span class="symbol">^n</span>$$</span><br></pre></td></tr></table></figure></li>
-<li>显示<br>$$x = a_{1}^n+a_{2}^n+a_{3}^n$$<br>如果希望左右两边都能有上下标，可以使用\sideset语法</li>
+<li>显示<br>$$x &#x3D; a_{1}^n+a_{2}^n+a_{3}^n$$<br>如果希望左右两边都能有上下标，可以使用\sideset语法</li>
 <li>示例<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">$</span><span class="symbol">$</span>\sideset&#123;^<span class="number">1</span>_2&#125;&#123;^<span class="number">3</span>_4&#125;\bigotimes<span class="symbol">$</span><span class="symbol">$</span></span><br></pre></td></tr></table></figure></li>
 <li>显示<br>$$\sideset{^1_2}{^3_4}\bigotimes$$</li>
 </ul>
 <h3 id="括号"><a href="#括号" class="headerlink" title="括号"></a>括号</h3><p><code>()</code> <code>[]</code> 和<code>|</code>都表示它们自己，但是<code>&#123;&#125;</code>因为有特殊作用因此当需要显示大括号时一般使用<code>\lbrace \rbrace</code>来表示。</p>
 <ul>
 <li>示例<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">$</span><span class="symbol">$</span>f(x,y) = <span class="number">25</span>*\lbrace x+(y<span class="number">-1</span>)/<span class="number">2</span> \rbrace<span class="symbol">$</span><span class="symbol">$</span></span><br></pre></td></tr></table></figure></li>
-<li>显示<br>$$f(x,y) = 25*\lbrace x+(y-1)/2 \rbrace$$</li>
+<li>显示<br>$$f(x,y) &#x3D; 25*\lbrace x+(y-1)&#x2F;2 \rbrace$$</li>
 </ul>
 <h3 id="分数"><a href="#分数" class="headerlink" title="分数"></a>分数</h3><p>分数使用<code>\frac&#123;分母&#125;&#123;分子&#125;</code>这样的语法 不过推荐使用<code>\cfrac</code>来代替<code>\frac</code>显示公式不会太挤。</p>
 <ul>
@@ -694,31 +693,31 @@
 </tr>
 </thead>
 <tbody><tr>
-<td align="center">$$\pi=16\arctan(\frac{1}{5})-4\arctan(\frac{1}{239})$$</td>
+<td align="center">$$\pi&#x3D;16\arctan(\frac{1}{5})-4\arctan(\frac{1}{239})$$</td>
 <td align="center"><code>$$\pi=16\arctan(\frac&#123;1&#125;&#123;5&#125;)-4\arctan(\frac&#123;1&#125;&#123;239&#125;)$$</code></td>
 </tr>
 <tr>
-<td align="center">$$(\sin{x})^{\prime}=\cos{x}$$</td>
+<td align="center">$$(\sin{x})^{\prime}&#x3D;\cos{x}$$</td>
 <td align="center"><code>$$(\sin&#123;x&#125;)\prime=\cos&#123;x&#125;$$</code></td>
 </tr>
 <tr>
-<td align="center">$$\lim_{x\to+\infty}\cfrac{sin{x}}{x}=0$$</td>
+<td align="center">$$\lim_{x\to+\infty}\cfrac{sin{x}}{x}&#x3D;0$$</td>
 <td align="center"><code>$$\lim_&#123;x\rightarrow+\infty&#125;\cfrac&#123;sin&#123;x&#125;&#125;&#123;x&#125;=0$$</code></td>
 </tr>
 <tr>
-<td align="center">$$\int_{a}^{b}f(x)\mathrm{d}{x}=f(\xi)(b-a)$$</td>
+<td align="center">$$\int_{a}^{b}f(x)\mathrm{d}{x}&#x3D;f(\xi)(b-a)$$</td>
 <td align="center"><code>$$\int_&#123;a&#125;^&#123;b&#125;f(x)\mathrm&#123;d&#125;&#123;x&#125;=f(\xi)(b-a)$$</code></td>
 </tr>
 <tr>
-<td align="center">$$e^{i\theta}=\cos\theta+i\sin\theta$$</td>
+<td align="center">$$e^{i\theta}&#x3D;\cos\theta+i\sin\theta$$</td>
 <td align="center"><code>$$e^&#123;i\theta&#125;=\cos\theta+i\sin\theta$$</code></td>
 </tr>
 <tr>
-<td align="center">$$\lim_{n\to+\infty}\sum_{i=1}^{n}f[a+\frac{i}{n}(b-a)]\frac{b-a}{n}=\int_{a}^{b}f(x)\mathrm{d}{x}$$</td>
+<td align="center">$$\lim_{n\to+\infty}\sum_{i&#x3D;1}^{n}f[a+\frac{i}{n}(b-a)]\frac{b-a}{n}&#x3D;\int_{a}^{b}f(x)\mathrm{d}{x}$$</td>
 <td align="center"><code>$$\lim_&#123;n\to+\infty&#125;\sum_&#123;i=1&#125;^&#123;n&#125;f[a+\frac&#123;i&#125;&#123;n&#125;(b-a)]\frac&#123;b-a&#125;&#123;n&#125;=&lt;br&gt;\int_&#123;a&#125;^&#123;b&#125;f(x)\mathrm&#123;d&#125;&#123;x&#125;$$</code></td>
 </tr>
 <tr>
-<td align="center">$$f(x)=\frac{1}{\sqrt{2\pi}\sigma}e^{-{\frac{(x-\mu)^2}{2\sigma^2}}} -\infty&lt; x &lt;+\infty$$</td>
+<td align="center">$$f(x)&#x3D;\frac{1}{\sqrt{2\pi}\sigma}e^{-{\frac{(x-\mu)^2}{2\sigma^2}}} -\infty&lt; x &lt;+\infty$$</td>
 <td align="center"><code>$$f(x)=\frac&#123;1&#125;&#123;\sqrt&#123;2\pi&#125;\sigma&#125;e^&#123;\frac&#123;(x-\mu)^2&#125;&#123;2\sigma^2&#125;&#125; -\infty&lt; x &lt;+\infty$$</code></td>
 </tr>
 </tbody></table>

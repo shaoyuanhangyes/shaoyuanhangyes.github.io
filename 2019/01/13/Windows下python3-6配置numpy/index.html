@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Windows下使用Pycharm编译器配置Python的Numpy库版本介绍Windows系统 Python3.6 Pycharm2017.3.2 numpy-1.14.0  环境配置开始下载numpy  1 第一种方法 在cmd里用pip安装 12pip install wheelpip install numpy 如果报错 换第二种方法">
+  <meta name="description" content="Windows下使用Pycharm编译器配置Python的Numpy库版本介绍Windows系统 Python3.6 Pycharm2017.3.2 numpy-1.14.0  环境配置开始下载numpy  1 第一种方法 在cmd里用pip安装12pip install wheelpip install numpy 如果报错 换第二种方法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Windows下python3.6配置numpy">
 <meta property="og:url" content="http://example.com/2019/01/13/Windows%E4%B8%8Bpython3-6%E9%85%8D%E7%BD%AEnumpy/index.html">
 <meta property="og:site_name" content="shaoyuanhangyes">
-<meta property="og:description" content="Windows下使用Pycharm编译器配置Python的Numpy库版本介绍Windows系统 Python3.6 Pycharm2017.3.2 numpy-1.14.0  环境配置开始下载numpy  1 第一种方法 在cmd里用pip安装 12pip install wheelpip install numpy 如果报错 换第二种方法">
+<meta property="og:description" content="Windows下使用Pycharm编译器配置Python的Numpy库版本介绍Windows系统 Python3.6 Pycharm2017.3.2 numpy-1.14.0  环境配置开始下载numpy  1 第一种方法 在cmd里用pip安装12pip install wheelpip install numpy 如果报错 换第二种方法">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-01-13T11:39:23.000Z">
 <meta property="article:modified_time" content="2020-07-09T02:23:09.305Z">
@@ -253,25 +253,21 @@
 </code></pre>
 <h3 id="环境配置开始"><a href="#环境配置开始" class="headerlink" title="环境配置开始"></a>环境配置开始</h3><p>下载numpy</p>
 <ul>
-<li><p>1 第一种方法 在cmd里用pip安装</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install wheel</span><br><span class="line">pip install numpy</span><br></pre></td></tr></table></figure>
-<p>如果报错 换第二种方法</p>
-<span id="more"></span> </li>
-<li><p>2 第二种方法 直接下载安装<br>在 <a target="_blank" rel="noopener" href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy">https://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy</a> 下载对应版本号和系统位数的文件<br>并在下载文件的文件夹使用cmd窗口或者git窗口安装下载的文件 eg：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install 下载的文件名(例如 numpy-1.14.0+mkl-cp36-cp36m-win_amd64.whl)</span><br></pre></td></tr></table></figure>
-<p>该方法问题在于外网文件下载太慢 但我没出现问题</p>
+<li>1 第一种方法 在cmd里用pip安装<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install wheel</span><br><span class="line">pip install numpy</span><br></pre></td></tr></table></figure>
+如果报错 换第二种方法<span id="more"></span> </li>
+<li>2 第二种方法 直接下载安装<br>在 <a target="_blank" rel="noopener" href="https://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy">https://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy</a> 下载对应版本号和系统位数的文件<br>并在下载文件的文件夹使用cmd窗口或者git窗口安装下载的文件 eg：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install 下载的文件名(例如 numpy-1.14.0+mkl-cp36-cp36m-win_amd64.whl)</span><br></pre></td></tr></table></figure>
+该方法问题在于外网文件下载太慢 但我没出现问题</li>
+</ul>
 <h4 id="numpy已经安装完毕了-如果打开cmd窗口进入python命令行-敲入测试命令"><a href="#numpy已经安装完毕了-如果打开cmd窗口进入python命令行-敲入测试命令" class="headerlink" title="numpy已经安装完毕了 如果打开cmd窗口进入python命令行 敲入测试命令"></a>numpy已经安装完毕了 如果打开cmd窗口进入python命令行 敲入测试命令</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;import numpy</span><br><span class="line">&gt;&gt;&gt;numpy.random.rand(4,4)</span><br></pre></td></tr></table></figure>
 <p>会出现4*4的随机数组表示numpy安装成功</p>
 <h4 id="但是！在pycharm中-import-numpy报错！"><a href="#但是！在pycharm中-import-numpy报错！" class="headerlink" title="但是！在pycharm中 import numpy报错！"></a>但是！在pycharm中 import numpy报错！</h4><p>经过长时间排查 发现并不是numpy安装的问题 也不是版本错误的问题<br>而是pycharm没有numpy的模块包<br>需要设置pycharm<br>步骤如下</p>
-<pre><code>  Pycharm的Setting/project/project Interpreter
-  点击绿色加号 Install Available Packages 在列表中找到numpy点击下方的Install Package
+<pre><code>    Pycharm的Setting/project/project Interpreter
+    点击绿色加号 Install Available Packages 在列表中找到numpy点击下方的Install Package
 </code></pre>
 <p>操作完成后在pycharm里敲入测试命令</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import numpy</span><br><span class="line">numpy.random.rand(4,4)</span><br></pre></td></tr></table></figure>
 <p>不会对引入numpy报错 并成功输出随机数组<br>至此 Windows下Python安装numpy已经完成</p>
-<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>安装numpy使我初入门python的我大费周章<br>我刚开始安装的python3.7.0 但是在Pycharm里调用的3.7的exe却出来的是3.6的python<br>我以为numpy是版本不对应 我重新装了python3.6并重新安装了对应版本的numpy发现在pycharm里还是无法调用<br>后来才发现pycharm也应该设置 不知道新建一个项目是不是还要我手动添加numpy才好使<br>感受就是Windows下玩Python真的太累了 还是Linux或者Mac环境下好玩 安装容易指令简单问题也少<br>如果要是安装小型的库的话直接把文件复制到 python3.6/Lib 目录下就行了<br>为什么没说是Lib/site-packages 因为我在添加graphics.py的时候发现放在site-packages文件夹下依旧import提示不存在<br>放在Lib下就不报错了<br>展望自己的学习路程 应该还需要安装Matplotlib的库 不知道会不会再写一篇关于Matplotlib的文章呢</p>
-</li>
-</ul>
+<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>安装numpy使我初入门python的我大费周章<br>我刚开始安装的python3.7.0 但是在Pycharm里调用的3.7的exe却出来的是3.6的python<br>我以为numpy是版本不对应 我重新装了python3.6并重新安装了对应版本的numpy发现在pycharm里还是无法调用<br>后来才发现pycharm也应该设置 不知道新建一个项目是不是还要我手动添加numpy才好使<br>感受就是Windows下玩Python真的太累了 还是Linux或者Mac环境下好玩 安装容易指令简单问题也少<br>如果要是安装小型的库的话直接把文件复制到 python3.6&#x2F;Lib 目录下就行了<br>为什么没说是Lib&#x2F;site-packages 因为我在添加graphics.py的时候发现放在site-packages文件夹下依旧import提示不存在<br>放在Lib下就不报错了<br>展望自己的学习路程 应该还需要安装Matplotlib的库 不知道会不会再写一篇关于Matplotlib的文章呢</p>
 
     </div>
 

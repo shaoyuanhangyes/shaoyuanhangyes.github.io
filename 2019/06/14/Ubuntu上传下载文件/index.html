@@ -248,10 +248,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="使用pscp上传下载文件"><a href="#使用pscp上传下载文件" class="headerlink" title="使用pscp上传下载文件"></a>使用pscp上传下载文件</h1><h2 id="pscp上传文件到指定目录"><a href="#pscp上传文件到指定目录" class="headerlink" title="pscp上传文件到指定目录"></a>pscp上传文件到指定目录</h2><p>eg. 将Windows10下D:\Code\datastructure.txt文件上传到Ubuntu下var/www目录下<br>cmd的pscp命令为</p>
+        <h1 id="使用pscp上传下载文件"><a href="#使用pscp上传下载文件" class="headerlink" title="使用pscp上传下载文件"></a>使用pscp上传下载文件</h1><h2 id="pscp上传文件到指定目录"><a href="#pscp上传文件到指定目录" class="headerlink" title="pscp上传文件到指定目录"></a>pscp上传文件到指定目录</h2><p>eg. 将Windows10下D:\Code\datastructure.txt文件上传到Ubuntu下var&#x2F;www目录下<br>cmd的pscp命令为</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /D D:\Code\</span><br><span class="line">pscp D:\Code\php.zip root@ip:/var/www/</span><br><span class="line"><span class="comment">#ip为服务器的公网ip地址</span></span><br><span class="line"><span class="comment">#然后输入root的密码即可上传成功</span></span><br></pre></td></tr></table></figure>
 <span id="more"></span> 
-<h2 id="pscp下载文件到指定目录"><a href="#pscp下载文件到指定目录" class="headerlink" title="pscp下载文件到指定目录"></a>pscp下载文件到指定目录</h2><p>eg. 将Ubuntu下/var/www/目录下所有文件都下载到Windows10下D:\Code目录下<br>cmd的pscp命令为</p>
+<h2 id="pscp下载文件到指定目录"><a href="#pscp下载文件到指定目录" class="headerlink" title="pscp下载文件到指定目录"></a>pscp下载文件到指定目录</h2><p>eg. 将Ubuntu下&#x2F;var&#x2F;www&#x2F;目录下所有文件都下载到Windows10下D:\Code目录下<br>cmd的pscp命令为</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /D D:\Code\</span><br><span class="line">pscp -r root@ip:/var/www <span class="string">&quot;D:\Code&quot;</span></span><br><span class="line"><span class="comment">#ip为服务器的公网ip地址</span></span><br><span class="line"><span class="comment">#然后输入root的密码即可下载成功</span></span><br></pre></td></tr></table></figure>
     </div>
 

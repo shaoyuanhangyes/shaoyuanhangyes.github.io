@@ -20,18 +20,18 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="图G&#x3D;(V,E) V顶点 E边 图的概念及术语1.无向图2.有向图3.简单图:无重复边 没有结点到自身的边4.多重图:有重复边 有结点到自身的边5.完全图无向完全图:任意两个顶点都存在边 n个顶点的无向完全图有$\frac{n(n-1)}{2}$个边有向完全图:任意两个顶点间都存在方向相反的边 n个顶点的有向完全图有n(n-1)个边6.子图图本身就是自己的子图生成子图:子图中包含了原图的所有顶点7">
+  <meta name="description" content="图G&#x3D;(V,E) V顶点 E边 图的概念及术语1.无向图2.有向图3.简单图:无重复边 没有结点到自身的边4.多重图:有重复边 有结点到自身的边5.完全图无向完全图:任意两个顶点都存在边 n个顶点的无向完全图有$\frac{n(n-1)}{2}$个边有向完全图:任意两个顶点间都存在方向相反的边 n个顶点的有向完全图有n(n-1)个边6.子图图本身就是自己的子图生成子图:子图中包含了原图的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="图">
 <meta property="og:url" content="http://example.com/2019/11/11/%E5%9B%BE/index.html">
 <meta property="og:site_name" content="shaoyuanhangyes">
-<meta property="og:description" content="图G&#x3D;(V,E) V顶点 E边 图的概念及术语1.无向图2.有向图3.简单图:无重复边 没有结点到自身的边4.多重图:有重复边 有结点到自身的边5.完全图无向完全图:任意两个顶点都存在边 n个顶点的无向完全图有$\frac{n(n-1)}{2}$个边有向完全图:任意两个顶点间都存在方向相反的边 n个顶点的有向完全图有n(n-1)个边6.子图图本身就是自己的子图生成子图:子图中包含了原图的所有顶点7">
+<meta property="og:description" content="图G&#x3D;(V,E) V顶点 E边 图的概念及术语1.无向图2.有向图3.简单图:无重复边 没有结点到自身的边4.多重图:有重复边 有结点到自身的边5.完全图无向完全图:任意两个顶点都存在边 n个顶点的无向完全图有$\frac{n(n-1)}{2}$个边有向完全图:任意两个顶点间都存在方向相反的边 n个顶点的有向完全图有n(n-1)个边6.子图图本身就是自己的子图生成子图:子图中包含了原图的">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-11-11T06:32:19.000Z">
 <meta property="article:modified_time" content="2019-11-13T05:48:22.157Z">
 <meta property="article:author" content="syh">
-<meta property="article:tag" content="Data Structure">
 <meta property="article:tag" content="C++">
+<meta property="article:tag" content="Data Structure">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://example.com/2019/11/11/%E5%9B%BE/">
@@ -249,7 +249,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="图"><a href="#图" class="headerlink" title="图"></a>图</h2><p>G=(V,E) V顶点 E边</p>
+        <h2 id="图"><a href="#图" class="headerlink" title="图"></a>图</h2><p>G&#x3D;(V,E) V顶点 E边</p>
 <h3 id="图的概念及术语"><a href="#图的概念及术语" class="headerlink" title="图的概念及术语"></a>图的概念及术语</h3><p>1.无向图<br>2.有向图<br>3.简单图:无重复边 没有结点到自身的边<br>4.多重图:有重复边 有结点到自身的边<br>5.完全图<br>无向完全图:任意两个顶点都存在边 n个顶点的无向完全图有$\frac{n(n-1)}{2}$个边<br>有向完全图:任意两个顶点间都存在方向相反的边 n个顶点的有向完全图有n(n-1)个边<br>6.子图<br>图本身就是自己的子图<br>生成子图:子图中包含了原图的所有顶点<br>7.连通 强连通<br>无向图对应连通图 有向图对应强连通图</p>
 <span id="more"></span> 
 
@@ -275,16 +275,16 @@
 <td align="center">-</td>
 </tr>
 <tr>
-<td align="center">连通分量=极大连通子图:</td>
+<td align="center">连通分量&#x3D;极大连通子图:</td>
 <td align="center">包含了所有边的连通子图</td>
-<td align="center">强连通分量=极大强连通子图</td>
+<td align="center">强连通分量&#x3D;极大强连通子图</td>
 <td align="center">包含了所有边的强连通子图</td>
 </tr>
 </tbody></table>
-<p>8.极小连通子图:边数最少的连通子图<br>9.生成树:连通图中包含了全部结点的一个极小连通子图(不唯一) n个结点n-1条边<br>生成森林:非连通图所有连通分量的生成树组成生成森林(不唯一)<br>10.度<br>n个结点e个边的无向图中度的总数为2e<br>n个结点e个边的有向图中入度=出度=e<br>11.网(带权图):对边赋予权值 就成了网<br>12.稀疏图/稠密图:当|E|&lt;|V|log|E|时 该图为稀疏图 反之为稠密图</p>
+<p>8.极小连通子图:边数最少的连通子图<br>9.生成树:连通图中包含了全部结点的一个极小连通子图(不唯一) n个结点n-1条边<br>生成森林:非连通图所有连通分量的生成树组成生成森林(不唯一)<br>10.度<br>n个结点e个边的无向图中度的总数为2e<br>n个结点e个边的有向图中入度&#x3D;出度&#x3D;e<br>11.网(带权图):对边赋予权值 就成了网<br>12.稀疏图&#x2F;稠密图:当|E|&lt;|V|log|E|时 该图为稀疏图 反之为稠密图</p>
 <h3 id="图的存储"><a href="#图的存储" class="headerlink" title="图的存储"></a>图的存储</h3><h4 id="邻接矩阵"><a href="#邻接矩阵" class="headerlink" title="邻接矩阵"></a>邻接矩阵</h4><p>一维数组存结点 二维数组存边 所以空间复杂度$O(n^2)$</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#define Maxsize 100</span></span><br><span class="line">typedef char VertexType;//结点类型</span><br><span class="line">typedef int EdgeType;//边类型</span><br><span class="line">typedef struct&#123;</span><br><span class="line">    VertexType Vex[Maxsize];//一维数组</span><br><span class="line">    EdgeType Edge[Maxsize][Maxsize];//二维数组</span><br><span class="line">    int vexnum,edgenum;//结点个数，边个数</span><br><span class="line">&#125;MGraph;</span><br></pre></td></tr></table></figure>
-<p>性质：<br>适合稠密图<br>有向图邻接矩阵中一行非零的个数为该点的入度 一列非零的个数为该点的出度<br>无向图的邻接矩阵为实对称矩阵 $A=A^T$ 一行/列非零个数为该点的度<br>邻接矩阵$A$  $A^n元素A^n[i][j]=X 其中X=i-j$路径长度为n的路径的个数<br>针对稀疏图 邻接矩阵内存放了很多0/无意义的数据 造成了空间上的浪费 因此针对稀疏图我们采用邻接表的方式进行存储</p>
+<p>性质：<br>适合稠密图<br>有向图邻接矩阵中一行非零的个数为该点的入度 一列非零的个数为该点的出度<br>无向图的邻接矩阵为实对称矩阵 $A&#x3D;A^T$ 一行&#x2F;列非零个数为该点的度<br>邻接矩阵$A$  $A^n元素A^n[i][j]&#x3D;X 其中X&#x3D;i-j$路径长度为n的路径的个数<br>针对稀疏图 邻接矩阵内存放了很多0&#x2F;无意义的数据 造成了空间上的浪费 因此针对稀疏图我们采用邻接表的方式进行存储</p>
 <h4 id="邻接表"><a href="#邻接表" class="headerlink" title="邻接表"></a>邻接表</h4><p>为每个结点建立一个与之相连的单链表存放与结点相连的边<br>顶点表为顺序存储 存顶点的数据 存边表的头指针<br>边表为链式存储 存放与该结点相连的所有边</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#define Maxsize </span></span><br><span class="line">typedef struct ArcNode&#123;//边表</span><br><span class="line">    int adjvex;//边表数据域 存放相连结点的标号</span><br><span class="line">    struct ArcNode *next;//指向下一个边</span><br><span class="line">&#125;ArcNode;</span><br><span class="line">typedef struct VNode&#123;//顶点表</span><br><span class="line">    VertexType data;//顶点元素</span><br><span class="line">    ArcNode *first;//指向第一个边</span><br><span class="line">&#125;VNode，AdjList[Maxsize];</span><br><span class="line">typedef struct&#123;//邻接表</span><br><span class="line">    AdjList vertices;//存整个图的数据</span><br><span class="line">    int vexnum,arcnum;//顶点个数，边个数</span><br><span class="line">&#125;ALGraph;</span><br></pre></td></tr></table></figure>
 <p>性质:<br>适合稀疏图<br>因为对结点相连的边选择顺序不同 所以邻接表不唯一<br>有向图邻接表存储空间O(|V|+|E|) 结点对应边表的长度为该结点的出度 入度需要遍历邻接表计算<br>无向图邻接表存储空间O(|V|+2|E|) 结点对应边表的长度为该结点的度</p>
@@ -320,9 +320,9 @@
 <h4 id="深度优先搜索DFS"><a href="#深度优先搜索DFS" class="headerlink" title="深度优先搜索DFS"></a>深度优先搜索DFS</h4><p>通过递归或者栈实现</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">bool visited[Maxsize];//标记数组</span><br><span class="line">void DFSTraverse(Graph G)&#123;</span><br><span class="line">    <span class="keyword">for</span>(int i=0;i&lt;G.vexnum;i++) visited[i];</span><br><span class="line">    <span class="keyword">for</span>(int i=0;i&lt;G.vexnum;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!visited[i]) DFS(G,i);//结点未被访问过 进行DFS；</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">void DFS(Graph G,int v)&#123;</span><br><span class="line">    visit[v];</span><br><span class="line">    visited[v]=1;</span><br><span class="line">    <span class="keyword">for</span>(int w=FisrtNeighbor(G,v);w&gt;=0;w=NextNeighbor(G,v,w))&#123;</span><br><span class="line">        <span class="keyword">if</span>(!visited[w]) DFS(G,w);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>DFS算法性能分析: 空间复杂度$O(|V|)$ 时间复杂度 G为邻接矩阵 $O(|V|^2)$ G为邻接表 $O(|V|+|E|)$<br>深度优先遍历得出的序列得到深度优先生成树/森林<br>邻接矩阵的深度优先生成树唯一 邻接表的深度优先生成树不唯一(邻接表的边表序列不唯一)</p>
+<p>DFS算法性能分析: 空间复杂度$O(|V|)$ 时间复杂度 G为邻接矩阵 $O(|V|^2)$ G为邻接表 $O(|V|+|E|)$<br>深度优先遍历得出的序列得到深度优先生成树&#x2F;森林<br>邻接矩阵的深度优先生成树唯一 邻接表的深度优先生成树不唯一(邻接表的边表序列不唯一)</p>
 <h4 id="遍历和连通性"><a href="#遍历和连通性" class="headerlink" title="遍历和连通性"></a>遍历和连通性</h4><p>在无向图中 BFS()与DFS()的调用次数为连通分量的个数</p>
-<h3 id="图的应用"><a href="#图的应用" class="headerlink" title="图的应用"></a>图的应用</h3><h4 id="最小生成树"><a href="#最小生成树" class="headerlink" title="最小生成树"></a>最小生成树</h4><p>最小生成树就是极小连通子图 包含了所有顶点和最少的边 权值唯一且最小 |E|=|V|-1<br>性质:带权无向连通图才有最小生成树 最小生成树不一定唯一 当所有的边权值都不一样时才有唯一的最小生成树<br>图有n个顶点n-1个边时 最小生成树就是它自己</p>
+<h3 id="图的应用"><a href="#图的应用" class="headerlink" title="图的应用"></a>图的应用</h3><h4 id="最小生成树"><a href="#最小生成树" class="headerlink" title="最小生成树"></a>最小生成树</h4><p>最小生成树就是极小连通子图 包含了所有顶点和最少的边 权值唯一且最小 |E|&#x3D;|V|-1<br>性质:带权无向连通图才有最小生成树 最小生成树不一定唯一 当所有的边权值都不一样时才有唯一的最小生成树<br>图有n个顶点n-1个边时 最小生成树就是它自己</p>
 <p>从策略上来说，Prim算法是直接查找，多次寻找邻边的权重最小值，而Kruskal是需要先对权重排序后查找的<br>所以说，Kruskal在算法效率上是比Prim快的，因为Kruskal只需一次对权重的排序就能找到最小生成树，而Prim算法需要多次对邻边排序才能找到</p>
 <h5 id="Prim算法"><a href="#Prim算法" class="headerlink" title="Prim算法"></a>Prim算法</h5><p>适用于稠密图<br>首先以一个结点作为最小生成树的初始结点，然后以迭代的方式找出最小生成树中各结点权重最小的边，并加到最小生成树中。（加入之后如果产生回路了就要跳过这条边，选择下一个结点）当所有的结点都加入到最小生成树中后，就找出了这个连通图的最小生成树</p>
 <h5 id="Kruskal算法"><a href="#Kruskal算法" class="headerlink" title="Kruskal算法"></a>Kruskal算法</h5><p>Kruskal算法在找最小生成树结点之前，需要对权重从小到大进行排序。将排序好的权重边依次加入到最小生成树中（如果加入时产生回路就跳过这条边，加入下一条边），当所有的结点都加入到最小生成树中后，就找到了这个连通图的最小生成树</p>
@@ -355,8 +355,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Data-Structure/" rel="tag"># Data Structure</a>
               <a href="/tags/C/" rel="tag"># C++</a>
+              <a href="/tags/Data-Structure/" rel="tag"># Data Structure</a>
           </div>
 
         
