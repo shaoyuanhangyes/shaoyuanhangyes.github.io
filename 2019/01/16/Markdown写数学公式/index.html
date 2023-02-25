@@ -28,7 +28,7 @@
 <meta property="og:description" content="前提theme&#x2F;next下_config.yml中 mathjax: enable: true要开启 插入数学公式行内公式行内公式是可以让公式在文中与文字或其他东西混编，不独占一行。 $数学公式$  示例1质能方程 $E &#x3D; mc^2$ 显示质能方程 $E &#x3D; mc^2$">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-01-16T14:47:36.000Z">
-<meta property="article:modified_time" content="2023-02-24T15:58:39.350Z">
+<meta property="article:modified_time" content="2023-02-25T15:52:27.994Z">
 <meta property="article:author" content="syh">
 <meta property="article:tag" content="Markdown">
 <meta property="article:tag" content="Math">
@@ -226,7 +226,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-02-24 23:58:39" itemprop="dateModified" datetime="2023-02-24T23:58:39+08:00">2023-02-24</time>
+                <time title="修改时间：2023-02-25 23:52:27" itemprop="dateModified" datetime="2023-02-25T23:52:27+08:00">2023-02-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -286,7 +286,7 @@
 <h3 id="根号开方"><a href="#根号开方" class="headerlink" title="根号开方"></a>根号开方</h3><p>开方使用<code>\sqrt[次数]&#123;被开方数&#125;</code>这样的语法</p>
 <ul>
 <li>示例<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">$</span><span class="symbol">$</span>\<span class="built_in">sqrt</span>[<span class="number">2</span>]&#123;X&#125;<span class="symbol">$</span><span class="symbol">$</span></span><br><span class="line"><span class="symbol">$</span><span class="symbol">$</span>\<span class="built_in">sqrt</span>[<span class="number">3</span>]&#123;Y&#125;<span class="symbol">$</span><span class="symbol">$</span></span><br><span class="line"><span class="symbol">$</span><span class="symbol">$</span>\<span class="built_in">sqrt</span>&#123;<span class="number">5</span>-x&#125;<span class="symbol">$</span><span class="symbol">$</span></span><br></pre></td></tr></table></figure></li>
-<li>显示<br>$$\sqrt[2]{X}$$<br>$$\sqrt[3]{Y}$$<br>$$\sqrt{5-x}$$</li>
+<li>显示<br>$$\sqrt[2]{X} \ \sqrt[3]{Y} \ \sqrt{5-x}$$</li>
 </ul>
 <h2 id="特殊字符"><a href="#特殊字符" class="headerlink" title="特殊字符"></a>特殊字符</h2><h3 id="希腊字母"><a href="#希腊字母" class="headerlink" title="希腊字母"></a>希腊字母</h3><table>
 <thead>
@@ -624,7 +624,7 @@
 <td align="center"></td>
 </tr>
 </tbody></table>
-<h3 id="省略号-Martrix"><a href="#省略号-Martrix" class="headerlink" title="省略号(Martrix)"></a>省略号(Martrix)</h3><table>
+<h3 id="省略号"><a href="#省略号" class="headerlink" title="省略号"></a>省略号</h3><table>
 <thead>
 <tr>
 <th align="center">符号</th>
@@ -644,7 +644,7 @@
 <td align="center"><code>$$\vdots$$</code></td>
 </tr>
 </tbody></table>
-<h3 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h3><p>在开头使用 <code>\begin&#123;matrix&#125;</code> 在结尾使用 <code>\end&#123;matrix&#125;</code> 在中间插入矩阵元素 每个元素之间插入<code>&amp;</code> 并在每行结尾处使用 <code>\\</code> <strong>(更新最新版本后必须要<code>\\\</code>才能起到换行 可能是新版本转义的问题 老版本不存在)</strong><br>使用矩阵时必须声明<code>$</code>或<code>$$</code>符号。</p>
+<h3 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h3><p>在开头使用 <code>\begin&#123;matrix&#125;</code> 在结尾使用 <code>\end&#123;matrix&#125;</code> 在中间插入矩阵元素 每个元素之间插入<code>&amp;</code> 并在每行结尾处使用 <code>\\</code> <strong>(更新最新版本后必须要<code>\\\</code>才能起到换行 可能是新版本转义的问题 老版本不存在)</strong><br><strong>经过查证 是mathjax3.x版本和2.x版本关于换行符策略代码更换 vscode的mpe是用<code>\\</code>换行 hexo的使用<code>\\\</code>换行</strong><br>使用矩阵时必须声明<code>$</code>或<code>$$</code>符号。</p>
 <table>
 <thead>
 <tr>
@@ -717,8 +717,8 @@
 <td align="center"><code>$$f(x)=\frac&#123;1&#125;&#123;\sqrt&#123;2\pi&#125;\sigma&#125;e^&#123;\frac&#123;(x-\mu)^2&#125;&#123;2\sigma^2&#125;&#125; -\infty&lt; x &lt;+\infty$$</code></td>
 </tr>
 <tr>
-<td align="center">$$ \iiint\limits_{1}^{2} \iiint_{1}^{3}   $$</td>
-<td align="center"></td>
+<td align="center">$$\begin{cases} \oint_{S} \boldsymbol{D} \cdot \mathrm{d} \boldsymbol{S}&#x3D;q_{0} \\ \oint_{S} \boldsymbol{B} \cdot \mathrm{d} \boldsymbol{S}&#x3D;0 \\ \oint_{\boldsymbol{l}} \boldsymbol{E} \cdot \mathrm{d} \boldsymbol{l}&#x3D;-\iint_{S} \frac{\partial \boldsymbol{B}}{\partial t} \cdot \mathrm{d} \boldsymbol{S} \\ \oint_{l} \boldsymbol{H} \cdot \mathrm{d} \boldsymbol{l}&#x3D;I_{0}+\iint_{S} \frac{\partial \boldsymbol{D}}{\partial t} \cdot \mathrm{d} \boldsymbol{S} \end{cases}$$</td>
+<td align="center"><code>\begin&#123;cases&#125; \oint_&#123;S&#125; \boldsymbol&#123;D&#125; \cdot \mathrm&#123;d&#125; \boldsymbol&#123;S&#125;=q_&#123;0&#125; \\ \oint_&#123;S&#125; \boldsymbol&#123;B&#125; \cdot \mathrm&#123;d&#125; \boldsymbol&#123;S&#125;=0 \\ \oint_&#123;\boldsymbol&#123;l&#125;&#125; \boldsymbol&#123;E&#125; \cdot \mathrm&#123;d&#125; \boldsymbol&#123;l&#125;=-\iint_&#123;S&#125; \frac&#123;\partial \boldsymbol&#123;B&#125;&#125;&#123;\partial t&#125; \cdot \mathrm&#123;d&#125; \boldsymbol&#123;S&#125; \\ \oint_&#123;l&#125; \boldsymbol&#123;H&#125; \cdot \mathrm&#123;d&#125; \boldsymbol&#123;l&#125;=I_&#123;0&#125;+\iint_&#123;S&#125; \frac&#123;\partial \boldsymbol&#123;D&#125;&#125;&#123;\partial t&#125; \cdot \mathrm&#123;d&#125; \boldsymbol&#123;S&#125; \end&#123;cases&#125;$$</code></td>
 </tr>
 </tbody></table>
 
@@ -826,7 +826,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E6%8F%90"><span class="nav-number">1.</span> <span class="nav-text">前提</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">插入数学公式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%8C%E5%86%85%E5%85%AC%E5%BC%8F"><span class="nav-number">2.1.</span> <span class="nav-text">行内公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8B%AC%E7%AB%8B%E5%85%AC%E5%BC%8F"><span class="nav-number">2.2.</span> <span class="nav-text">独立公式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%99%AE%E9%80%9A%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">普通数学公式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E5%87%8F%E4%B9%98%E9%99%A4"><span class="nav-number">3.1.</span> <span class="nav-text">加减乘除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8A%E4%B8%8B%E6%A0%87"><span class="nav-number">3.2.</span> <span class="nav-text">上下标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%AC%E5%8F%B7"><span class="nav-number">3.3.</span> <span class="nav-text">括号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%95%B0"><span class="nav-number">3.4.</span> <span class="nav-text">分数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B9%E5%8F%B7%E5%BC%80%E6%96%B9"><span class="nav-number">3.5.</span> <span class="nav-text">根号开方</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6"><span class="nav-number">4.</span> <span class="nav-text">特殊字符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%8C%E8%85%8A%E5%AD%97%E6%AF%8D"><span class="nav-number">4.1.</span> <span class="nav-text">希腊字母</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">4.2.</span> <span class="nav-text">关系运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0"><span class="nav-number">4.3.</span> <span class="nav-text">三角函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E6%95%B0%E5%87%BD%E6%95%B0"><span class="nav-number">4.4.</span> <span class="nav-text">对数函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AE%E7%A7%AF%E5%88%86"><span class="nav-number">4.5.</span> <span class="nav-text">微积分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%81%E7%95%A5%E5%8F%B7-Martrix"><span class="nav-number">4.6.</span> <span class="nav-text">省略号(Martrix)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5"><span class="nav-number">4.7.</span> <span class="nav-text">矩阵</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%BC%E5%90%88%E6%A1%88%E4%BE%8B%E7%A4%BA%E4%BE%8B"><span class="nav-number">5.</span> <span class="nav-text">综合案例示例</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E6%8F%90"><span class="nav-number">1.</span> <span class="nav-text">前提</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E5%85%A5%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">插入数学公式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%8C%E5%86%85%E5%85%AC%E5%BC%8F"><span class="nav-number">2.1.</span> <span class="nav-text">行内公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8B%AC%E7%AB%8B%E5%85%AC%E5%BC%8F"><span class="nav-number">2.2.</span> <span class="nav-text">独立公式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%99%AE%E9%80%9A%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">普通数学公式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E5%87%8F%E4%B9%98%E9%99%A4"><span class="nav-number">3.1.</span> <span class="nav-text">加减乘除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8A%E4%B8%8B%E6%A0%87"><span class="nav-number">3.2.</span> <span class="nav-text">上下标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%AC%E5%8F%B7"><span class="nav-number">3.3.</span> <span class="nav-text">括号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E6%95%B0"><span class="nav-number">3.4.</span> <span class="nav-text">分数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B9%E5%8F%B7%E5%BC%80%E6%96%B9"><span class="nav-number">3.5.</span> <span class="nav-text">根号开方</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6"><span class="nav-number">4.</span> <span class="nav-text">特殊字符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%8C%E8%85%8A%E5%AD%97%E6%AF%8D"><span class="nav-number">4.1.</span> <span class="nav-text">希腊字母</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E7%B3%BB%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">4.2.</span> <span class="nav-text">关系运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0"><span class="nav-number">4.3.</span> <span class="nav-text">三角函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E6%95%B0%E5%87%BD%E6%95%B0"><span class="nav-number">4.4.</span> <span class="nav-text">对数函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AE%E7%A7%AF%E5%88%86"><span class="nav-number">4.5.</span> <span class="nav-text">微积分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9C%81%E7%95%A5%E5%8F%B7"><span class="nav-number">4.6.</span> <span class="nav-text">省略号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5"><span class="nav-number">4.7.</span> <span class="nav-text">矩阵</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%BC%E5%90%88%E6%A1%88%E4%BE%8B%E7%A4%BA%E4%BE%8B"><span class="nav-number">5.</span> <span class="nav-text">综合案例示例</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
