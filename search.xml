@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>LeetCode_Go</title>
+      <link href="/2023/04/16/LeetCode-Go/"/>
+      <url>/2023/04/16/LeetCode-Go/</url>
+      
+        <content type="html"><![CDATA[<p>从Github仓库搬运到Hexo 整合到此</p><span id="more"></span> <h2 id="1-两数之和-two-sum"><a href="#1-两数之和-two-sum" class="headerlink" title="1.两数之和 two sum"></a>1.两数之和 two sum</h2><h3 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h3><p>给定一个整数数组 <code>nums</code> 和一个目标值 <code>target</code>，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。</p><p>你可以假设每种输入只会对应一个答案。但是，数组中同一个元素不能使用两遍。</p><h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">给定 nums = [2, 7, 11, 15], target = 9</span><br><span class="line"></span><br><span class="line">因为 nums[0] + nums[1] = 2 + 7 = 9</span><br><span class="line">所以返回 [0, 1]</span><br></pre></td></tr></table></figure><h3 id="解题"><a href="#解题" class="headerlink" title="解题"></a>解题</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">twoSum</span><span class="params">(nums []<span class="type">int</span>, target <span class="type">int</span>)</span></span> []<span class="type">int</span> &#123;</span><br><span class="line">m := <span class="keyword">map</span>[<span class="type">int</span>]<span class="type">int</span>&#123;&#125;</span><br><span class="line"><span class="keyword">for</span> k, v := <span class="keyword">range</span> nums &#123;</span><br><span class="line"><span class="keyword">if</span> p, ok := m[target-v]; ok &#123;</span><br><span class="line"><span class="keyword">return</span> []<span class="type">int</span>&#123;p, k&#125;</span><br><span class="line">&#125;</span><br><span class="line">m[v] = k</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> []<span class="type">int</span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">nums := []<span class="type">int</span>&#123;<span class="number">2</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">15</span>&#125;</span><br><span class="line">target := <span class="number">9</span></span><br><span class="line">result := twoSum(nums, target)</span><br><span class="line">fmt.Println(result)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Go </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Go </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>kafka</title>
       <link href="/2023/01/17/kafka/"/>
       <url>/2023/01/17/kafka/</url>
